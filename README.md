@@ -2,7 +2,7 @@
 
 This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
 
-The project comes with a sample ERC-20 token implementation with mint/burn, tests covered, deploy script and CI config.
+The project comes with a custom ERC-20 token implementation with mint/burn, fees, whitelist and OpenZeppelin AccessControl. There are also tests, deploy script and CI config.
 
 Requires `.env` file with:
 - ALCHEMY_URL
