@@ -14,17 +14,15 @@ const twentyTokens = ethers.utils.parseUnits("20.0", decimals);
 // AccessControl roles in bytes32 string
 // DEFAULT_ADMIN_ROLE, MINTER_ROLE, BURNER_ROLE
 const adminRole = ethers.constants.HashZero;
-const minterRole =
-  "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6";
-const burnerRole =
-  "0x51f4231475d91734c657e212cfb2e9728a863d53c9057d6ce6ca203d6e5cfd5d";
+const minterRole = "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6";
+const burnerRole = "0x51f4231475d91734c657e212cfb2e9728a863d53c9057d6ce6ca203d6e5cfd5d";
 
 describe("Token", function () {
-  let Token: ContractFactory;
-  let owner: SignerWithAddress,
+  let Token: ContractFactory,
+    owner: SignerWithAddress,
     alice: SignerWithAddress,
-    bob: SignerWithAddress;
-  let token: Contract;
+    bob: SignerWithAddress,
+    token: Contract;
 
   before(async () => {
     [owner, alice, bob] = await ethers.getSigners();
@@ -99,9 +97,7 @@ describe("Token", function () {
 
   describe("Whitelist", function () {
     it("Only admin should be able to whitelist", async () => {
-      await expect(
-        token.connect(alice).addToWhitelist(alice.address)
-      ).to.be.revertedWith(
+      await expect(token.connect(alice).addToWhitelist(alice.address)).to.be.revertedWith(
         `AccessControl: account ${alice.address.toLowerCase()} is missing role ${adminRole}`
       );
     });
@@ -130,9 +126,7 @@ describe("Token", function () {
   describe("Fees", function () {
     it("Should not be able to change fee rate without DEFAULT_ADMIN_ROLE", async () => {
       const newFee = 2;
-      await expect(
-        token.connect(alice).changeFeeRate(newFee)
-      ).to.be.revertedWith(
+      await expect(token.connect(alice).changeFeeRate(newFee)).to.be.revertedWith(
         `AccessControl: account ${alice.address.toLowerCase()} is missing role ${adminRole}`
       );
     });
@@ -209,10 +203,7 @@ describe("Token", function () {
 
     it("Can not transfer above the amount", async () => {
       await expect(
-        token.transfer(
-          alice.address,
-          ethers.utils.parseUnits("1000.01", decimals)
-        )
+        token.transfer(alice.address, ethers.utils.parseUnits("1000.01", decimals))
       ).to.be.revertedWith("ERC20: transfer amount exceeds balance");
     });
 
@@ -238,9 +229,7 @@ describe("Token", function () {
 
       // Check balances
       const finalOwnerBalance = await token.balanceOf(owner.address);
-      expect(finalOwnerBalance).to.be.equal(
-        initialOwnerBalance.sub(twentyTokens)
-      );
+      expect(finalOwnerBalance).to.be.equal(initialOwnerBalance.sub(twentyTokens));
 
       const aliceBalance = await token.balanceOf(alice.address);
       expect(aliceBalance).to.be.equal(initialAliceBalance.add(tenTokens));
@@ -279,9 +268,7 @@ describe("Token", function () {
       await token.approve(alice.address, tenTokens);
       // Trying to transfer 20 tokens
       await expect(
-        token
-          .connect(alice)
-          .transferFrom(owner.address, alice.address, twentyTokens)
+        token.connect(alice).transferFrom(owner.address, alice.address, twentyTokens)
       ).to.be.revertedWith("ERC20: transfer amount exceeds allowance");
     });
 
@@ -290,16 +277,11 @@ describe("Token", function () {
       await token.approve(alice.address, tenTokens);
 
       // Send most of owner tokens to Bob
-      await token.transfer(
-        bob.address,
-        ethers.utils.parseUnits("995.0", decimals)
-      );
+      await token.transfer(bob.address, ethers.utils.parseUnits("995.0", decimals));
 
       // Check that Alice can't transfer all amount (only 5 left)
       await expect(
-        token
-          .connect(alice)
-          .transferFrom(owner.address, alice.address, tenTokens)
+        token.connect(alice).transferFrom(owner.address, alice.address, tenTokens)
       ).to.be.revertedWith("ERC20: transfer amount exceeds balance");
     });
   });

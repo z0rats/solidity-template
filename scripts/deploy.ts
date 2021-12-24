@@ -14,9 +14,7 @@ async function main() {
   console.log("Owner address: ", owner.address);
 
   const balance = await owner.getBalance();
-  console.log(
-    `Owner account balance: ${ethers.utils.formatEther(balance).toString()}`
-  );
+  console.log(`Owner account balance: ${ethers.utils.formatEther(balance).toString()}`);
 
   const Token = await ethers.getContractFactory("Token");
   const token = await Token.deploy(

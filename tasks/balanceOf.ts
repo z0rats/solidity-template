@@ -17,9 +17,6 @@ task("token-balance", "Prints an account's token balance")
     );
 
     const balance = await token.balanceOf(taskArgs.account);
-    const format = hre.ethers.utils.formatUnits(
-      balance,
-      process.env.TOKEN_DECIMALS
-    );
+    const format = hre.ethers.utils.formatUnits(balance, process.env.TOKEN_DECIMALS);
     console.log(`${taskArgs.account} account balance is ${format} tokens`);
   });
