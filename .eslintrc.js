@@ -21,5 +21,6 @@ module.exports = {
       { ignores: ["modules"] },
     ],
     "node/no-unpublished-import": ["warn"],
+    "max-len": [1, { code: 90 }],
   },
 };
