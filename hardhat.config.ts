@@ -12,6 +12,7 @@ import "solidity-coverage";
 import "./tasks/index.ts";
 
 const chainIds = {
+  mumbai: 80001,
   rinkeby: 4,
 };
 
@@ -23,16 +24,14 @@ if (!process.env.MNEMONIC) {
 }
 
 let alchemyApiKey: string;
-if (!process.env.ALCHEMY_URL) {
+if (!process.env.ALCHEMY_API_KEY) {
   throw new Error("Please set your ALCHEMY_API_KEY in a .env file");
 } else {
-  alchemyApiKey = process.env.ALCHEMY_URL;
+  alchemyApiKey = process.env.ALCHEMY_API_KEY;
 }
 
-function createNetworkConfig(
-  network: keyof typeof chainIds
-): NetworkUserConfig {
-  const url: string = alchemyApiKey;
+function createNetworkConfig(network: keyof typeof chainIds): NetworkUserConfig {
+  const url: string = `https://polygon-${network}.g.alchemy.com/v2/${alchemyApiKey}`;
   return {
     accounts: {
       count: 2,
@@ -56,6 +55,7 @@ const config: HardhatUserConfig = {
   },
   defaultNetwork: "hardhat",
   networks: {
+    mumbai: createNetworkConfig("mumbai"),
     rinkeby: createNetworkConfig("rinkeby"),
   },
   etherscan: {
@@ -81,8 +81,7 @@ const config: HardhatUserConfig = {
     enabled: process.env.GAS ? true : false,
     currency: "USD",
     token: "ETH",
-    gasPriceApi:
-      "https://api.etherscan.io/api?module=proxy&action=eth_gasPrice",
+    gasPriceApi: "https://api.etherscan.io/api?module=proxy&action=eth_gasPrice",
     coinmarketcap: process.env.CMC_API_KEY,
   },
 };
