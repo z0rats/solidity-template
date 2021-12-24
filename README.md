@@ -5,7 +5,7 @@ This project demonstrates an advanced Hardhat use case, integrating other tools 
 The project comes with a custom ERC-20 token implementation with mint/burn, fees, whitelist and OpenZeppelin AccessControl. There are also tests, deploy script and CI config.
 
 Requires `.env` file with:
-- ALCHEMY_URL
+- ALCHEMY_API_KEY
 - ETHERSCAN_API_KEY
 - CMC_API_KEY
 - MNEMONIC
@@ -23,6 +23,6 @@ npx hardhat coverage
 npx hardhat test test/token.test.ts
 GAS=true npx hardhat test test/token.test.ts
 npx hardhat accounts
-npx hardhat run scripts/deploy.ts --network rinkeby
-npx hardhat token-balance --account <addrs> --network rinkeby
+npx hardhat run scripts/deploy.ts --network mumbai
+npx hardhat token-balance --account <addrs> --network mumbai
 ```
