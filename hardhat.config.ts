@@ -36,7 +36,6 @@ function createNetworkConfig(network: keyof typeof chainIds): NetworkUserConfig 
     accounts: {
       count: 2,
       mnemonic,
-      // process.env.RINKEBY_PRIVATE_KEY !== undefined ? [process.env.RINKEBY_PRIVATE_KEY] : [],
     },
     chainId: chainIds[network],
     url,
@@ -59,7 +58,15 @@ const config: HardhatUserConfig = {
     rinkeby: createNetworkConfig("rinkeby"),
   },
   etherscan: {
-    apiKey: process.env.ETHERSCAN_API_KEY,
+    apiKey: process.env.POLYGONSCAN_API_KEY,
+    // Use in future hardhat-etherscan version
+    // apiKey: {
+    //   mainnet: process.env.ETHERSCAN_API_KEY,
+    //   ropsten: process.env.ETHERSCAN_API_KEY,
+    //   rinkeby: process.env.ETHERSCAN_API_KEY,
+    //   // polygon
+    //   mumbai: process.env.POLYGONSCAN_API_KEY,
+    // },
   },
   paths: {
     artifacts: "./artifacts",
