@@ -1,6 +1,6 @@
 import fs from "fs";
 import dotenv from "dotenv";
-import hre, { ethers } from "hardhat";
+import hre from "hardhat";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
 const network = hre.network.name;
@@ -10,13 +10,15 @@ for (const parameter in envConfig) {
 }
 
 async function main() {
-  const [owner]: SignerWithAddress[] = await ethers.getSigners();
+  const [owner]: SignerWithAddress[] = await hre.ethers.getSigners();
   console.log("Owner address: ", owner.address);
 
   const balance = await owner.getBalance();
-  console.log(`Owner account balance: ${ethers.utils.formatEther(balance).toString()}`);
+  console.log(
+    `Owner account balance: ${hre.ethers.utils.formatEther(balance).toString()}`
+  );
 
-  const Token = await ethers.getContractFactory("Token");
+  const Token = await hre.ethers.getContractFactory("Token");
   const token = await Token.deploy(
     process.env.TOKEN_NAME as string,
     process.env.TOKEN_SYMBOL as string,
