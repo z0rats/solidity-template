@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 /** @title ERC20 token. */
 contract Token is ERC20, AccessControl {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
-    bytes32 public constant BURNER_ROLE  = keccak256("BURNER_ROLE ");
+    bytes32 public constant BURNER_ROLE = keccak256("BURNER_ROLE");
 
     uint256 private feeRate;
     address private feeRecipient;

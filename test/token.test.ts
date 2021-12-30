@@ -7,15 +7,15 @@ import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/dist/src/signer-wit
 const tokenName = "Token";
 const symbol = "CRPT";
 const decimals = 18;
-const feeRate = 150; // 1.5% fee in basis points ?
+const feeRate = 150; // 1.5%
 const tenTokens = ethers.utils.parseUnits("10.0", decimals);
 const twentyTokens = ethers.utils.parseUnits("20.0", decimals);
 
 // AccessControl roles in bytes32 string
 // DEFAULT_ADMIN_ROLE, MINTER_ROLE, BURNER_ROLE
 const adminRole = ethers.constants.HashZero;
-const minterRole = "0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6";
-const burnerRole = "0x51f4231475d91734c657e212cfb2e9728a863d53c9057d6ce6ca203d6e5cfd5d";
+const minterRole = ethers.utils.solidityKeccak256(["string"], ["MINTER_ROLE"]);
+const burnerRole = ethers.utils.solidityKeccak256(["string"], ["BURNER_ROLE"]);
 
 describe("Token", function () {
   let Token: ContractFactory,
