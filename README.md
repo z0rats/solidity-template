@@ -19,7 +19,7 @@ Create a `.env` file using the `.env.example` template with the following conten
 - TOKEN_DECIMALS
 - TOKEN_MINT
 
-Try running some of the following tasks:
+Try running some of the following tasks and don't forget to specify network (ex. `--network mumbai`):
 
 ```shell
 npx hardhat coverage
