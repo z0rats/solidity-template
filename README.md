@@ -4,10 +4,13 @@ This project demonstrates an advanced Hardhat use case, integrating other tools 
 
 The project comes with a custom ERC-20 token implementation with mint/burn, fees, whitelist and OpenZeppelin AccessControl. There are also tests, deploy script and CI config.
 
-Requires `.env` file with:
-- ALCHEMY_API_KEY
-- ETHERSCAN_API_KEY
-- CMC_API_KEY
+### How to run
+
+Create a `.env` file using the `.env.example` template with the following content
+- [ALCHEMY_API_KEY](https://www.alchemy.com/)
+- [POLYGONSCAN_API_KEY](https://polygonscan.com/apis)
+- [CMC_API_KEY](https://coinmarketcap.com/api/)
+- [ETHERSCAN_API_KEY](https://etherscan.io/apis) - optional, polygonscan is used in config
 - MNEMONIC
 
 `.env-<network_name>` with:
