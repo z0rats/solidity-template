@@ -4,7 +4,7 @@ import { BigNumber, Contract, ContractFactory } from "ethers";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/dist/src/signer-with-address";
 
 // Token metadata
-const tokenName = "Token";
+const tokenName = "CryptonToken";
 const symbol = "CRPT";
 const decimals = 18;
 const feeRate = 150; // 1.5%
@@ -26,7 +26,7 @@ describe("Token", function () {
 
   before(async () => {
     [owner, alice, bob] = await ethers.getSigners();
-    Token = await ethers.getContractFactory("Token");
+    Token = await ethers.getContractFactory(tokenName);
   });
 
   beforeEach(async () => {
