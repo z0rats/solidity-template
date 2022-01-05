@@ -324,7 +324,7 @@ describe("Token", function () {
     });
   });
 
-  // In out tests Alice has the MINTER_ROLE
+  // In our tests Alice has the MINTER_ROLE
   describe("Minting", function () {
     it("Should not be able to mint tokens without MINTER_ROLE", async () => {
       const mintAmount = tenTokens;
