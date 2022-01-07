@@ -10,22 +10,21 @@ Create a `.env` file using the `.env.example` template with the following conten
 - [ALCHEMY_API_KEY](https://www.alchemy.com/)
 - [POLYGONSCAN_API_KEY](https://polygonscan.com/apis)
 - [CMC_API_KEY](https://coinmarketcap.com/api/)
-- [ETHERSCAN_API_KEY](https://etherscan.io/apis) - optional, polygonscan is used in config
-- MNEMONIC
-
-`.env-<network_name>` with:
-- TOKEN_NAME
-- TOKEN_SYMBOL
-- TOKEN_DECIMALS
-- TOKEN_MINT
+- [BSCSCAN_API_KEY](https://bscscan.com/apis)
+- [ETHERSCAN_API_KEY](https://etherscan.io/apis)
+- [MNEMONIC](https://docs.metamask.io/guide/common-terms.html#mnemonic-phrase-seed-phrase-seed-words)
 
 Try running some of the following tasks and don't forget to specify network (ex. `--network mumbai`):
 
+* `hh` is a [shorthand](https://hardhat.org/guides/shorthand.html) for `npx hardhat`
+
 ```shell
-npx hardhat coverage
-npx hardhat test test/token.test.ts
-GAS=true npx hardhat test test/token.test.ts
-npx hardhat accounts
-npx hardhat run scripts/deploy.ts --network mumbai
-npx hardhat token-balance --account <addrs> --network mumbai
+hh run scripts/deploy.ts --network mumbai
+
+hh coverage
+hh test test/token.test.ts
+GAS=true hh test test/token.test.ts
+
+hh accounts
+hh token-balance --account <addrs> --network mumbai
 ```
