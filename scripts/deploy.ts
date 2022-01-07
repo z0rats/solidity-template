@@ -21,8 +21,7 @@ async function main() {
   const Token = await hre.ethers.getContractFactory(process.env.TOKEN_NAME as string);
   const token = await Token.deploy(
     process.env.TOKEN_NAME_FULL as string,
-    process.env.TOKEN_SYMBOL as string,
-    process.env.TOKEN_MINT as string
+    process.env.TOKEN_SYMBOL as string
   );
 
   await token.deployed();
