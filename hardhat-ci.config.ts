@@ -2,6 +2,7 @@ import { HardhatUserConfig } from "hardhat/types";
 import "@nomiclabs/hardhat-waffle";
 import "hardhat-contract-sizer";
 import "solidity-coverage";
+import "@typechain/hardhat";
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -25,6 +26,10 @@ const config: HardhatUserConfig = {
     disambiguatePaths: false,
     runOnCompile: true,
     strict: false,
+  },
+  typechain: {
+    outDir: "types",
+    target: "ethers-v5",
   },
 };
 
