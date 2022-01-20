@@ -1,9 +1,11 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import { BigNumber, Contract, ContractFactory } from "ethers";
+import { BigNumber } from "ethers";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
-import * as snapshot from "./utils";
+import { Asset20, Asset20__factory } from "../types";
+
+import { roles, snapshot } from "./utils";
 
 // Token metadata
 const tokenName = "Token";
@@ -12,30 +14,21 @@ const decimals = 18;
 const tenTokens = ethers.utils.parseUnits("10.0", decimals);
 const twentyTokens = ethers.utils.parseUnits("20.0", decimals);
 
-// AccessControl roles in bytes32 string
-// DEFAULT_ADMIN_ROLE, MINTER_ROLE, BURNER_ROLE
-const adminRole = ethers.constants.HashZero;
-const minterRole = ethers.utils.solidityKeccak256(["string"], ["MINTER_ROLE"]);
-const burnerRole = ethers.utils.solidityKeccak256(["string"], ["BURNER_ROLE"]);
-
 describe("Token", function () {
-  let Token: ContractFactory,
+  let token: Asset20,
     owner: SignerWithAddress,
     alice: SignerWithAddress,
     bob: SignerWithAddress,
-    token: Contract,
     snapId: string;
 
   before(async () => {
     [owner, alice, bob] = await ethers.getSigners();
-    Token = await ethers.getContractFactory(tokenName);
-
-    token = await Token.deploy(tokenName, symbol);
+    token = await new Asset20__factory(owner).deploy(tokenName, symbol);
     await token.deployed();
 
     // Grant roles and mint some tokens
-    await token.grantRole(minterRole, alice.address);
-    await token.grantRole(burnerRole, bob.address);
+    await token.grantRole(roles.minter, alice.address);
+    await token.grantRole(roles.burner, bob.address);
     const amount = ethers.utils.parseUnits("1000.0", decimals);
     await token.connect(alice).mint(owner.address, amount);
     // await token.connect(alice).mint(alice.address, amount);
@@ -64,24 +57,26 @@ describe("Token", function () {
     });
 
     it("Should set the right admin role", async () => {
-      expect(await token.hasRole(adminRole, owner.address)).to.equal(true);
+      expect(await token.hasRole(roles.admin, owner.address)).to.equal(true);
     });
 
     it("Should set the right minter role", async () => {
-      expect(await token.hasRole(minterRole, alice.address)).to.equal(true);
+      expect(await token.hasRole(roles.minter, alice.address)).to.equal(true);
     });
 
     it("Should set the right burner role", async () => {
-      expect(await token.hasRole(burnerRole, bob.address)).to.equal(true);
+      expect(await token.hasRole(roles.burner, bob.address)).to.equal(true);
     });
   });
 
   describe("Ownership", function () {
     it("Only admin can grant roles", async () => {
       await expect(
-        token.connect(alice).grantRole(burnerRole, alice.address)
+        token.connect(alice).grantRole(roles.burner, alice.address)
       ).to.be.revertedWith(
-        `AccessControl: account ${alice.address.toLowerCase()} is missing role ${adminRole}`
+        `AccessControl: account ${alice.address.toLowerCase()} is missing role ${
+          roles.admin
+        }`
       );
     });
   });
@@ -196,7 +191,9 @@ describe("Token", function () {
     it("Should not be able to burn tokens without BURNER_ROLE", async () => {
       const burnAmount = tenTokens;
       await expect(token.burn(alice.address, burnAmount)).to.be.revertedWith(
-        `AccessControl: account ${owner.address.toLowerCase()} is missing role ${burnerRole}`
+        `AccessControl: account ${owner.address.toLowerCase()} is missing role ${
+          roles.burner
+        }`
       );
     });
 
@@ -234,7 +231,9 @@ describe("Token", function () {
     it("Should not be able to mint tokens without MINTER_ROLE", async () => {
       const mintAmount = tenTokens;
       await expect(token.mint(alice.address, mintAmount)).to.be.revertedWith(
-        `AccessControl: account ${owner.address.toLowerCase()} is missing role ${minterRole}`
+        `AccessControl: account ${owner.address.toLowerCase()} is missing role ${
+          roles.minter
+        }`
       );
     });
 

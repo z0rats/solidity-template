@@ -96,6 +96,10 @@ const config: HardhatUserConfig = {
     gasPriceApi: "https://api.etherscan.io/api?module=proxy&action=eth_gasPrice",
     coinmarketcap: process.env.CMC_API_KEY,
   },
+  typechain: {
+    outDir: "types",
+    target: "ethers-v5",
+  },
 };
 
 export default config;
