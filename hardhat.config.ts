@@ -12,29 +12,32 @@ import "solidity-coverage";
 import "./tasks/index.ts";
 
 const chainIds = {
-  mumbai: 80001,
+  hardhat: 31337,
+  mainnet: 1,
+  ropsten: 3,
   rinkeby: 4,
+  goerli: 5,
+  kovan: 42,
+  mumbai: 80001,
+  bscTestnet: 97,
 };
 
-let mnemonic: string;
-if (!process.env.MNEMONIC) {
+// Ensure that we have all the environment variables we need.
+const mnemonic: string | undefined = process.env.MNEMONIC;
+if (!mnemonic) {
   throw new Error("Please set your MNEMONIC in a .env file");
-} else {
-  mnemonic = process.env.MNEMONIC;
 }
 
-let alchemyApiKey: string;
-if (!process.env.ALCHEMY_API_KEY) {
+const alchemyApiKey: string | undefined = process.env.ALCHEMY_API_KEY;
+if (!alchemyApiKey) {
   throw new Error("Please set your ALCHEMY_API_KEY in a .env file");
-} else {
-  alchemyApiKey = process.env.ALCHEMY_API_KEY;
 }
 
 function createNetworkConfig(network: keyof typeof chainIds): NetworkUserConfig {
   const url: string = `https://polygon-${network}.g.alchemy.com/v2/${alchemyApiKey}`;
   return {
     accounts: {
-      count: 2,
+      count: 10,
       mnemonic,
     },
     chainId: chainIds[network],
@@ -56,6 +59,15 @@ const config: HardhatUserConfig = {
   networks: {
     mumbai: createNetworkConfig("mumbai"),
     rinkeby: createNetworkConfig("rinkeby"),
+    bscTestnet: {
+      accounts: {
+        count: 3,
+        mnemonic,
+      },
+      url: "https://data-seed-prebsc-1-s1.binance.org:8545",
+      chainId: chainIds.bscTestnet,
+      gasPrice: 20000000000,
+    },
   },
   etherscan: {
     apiKey: {
