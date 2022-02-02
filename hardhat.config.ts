@@ -34,7 +34,7 @@ if (!alchemyApiKey) {
 }
 
 function createNetworkConfig(network: keyof typeof chainIds): NetworkUserConfig {
-  const url: string = `https://polygon-${network}.g.alchemy.com/v2/${alchemyApiKey}`;
+  const url: string = `https://eth-${network}.g.alchemy.com/v2/${alchemyApiKey}`;
   return {
     accounts: {
       count: 10,
@@ -59,6 +59,12 @@ const config: HardhatUserConfig = {
   },
   defaultNetwork: "hardhat",
   networks: {
+    hardhat: {
+      // forking: {
+      //   url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_MAINNET}`,
+      //   blockNumber: 14081268, // pinning a block to enable caching
+      // },
+    },
     mumbai: createNetworkConfig("mumbai"),
     rinkeby: createNetworkConfig("rinkeby"),
     bscTestnet: {
