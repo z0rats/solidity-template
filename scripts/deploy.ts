@@ -2,6 +2,7 @@ import fs from "fs";
 import dotenv from "dotenv";
 import hre from "hardhat";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
+import { Asset20__factory } from "../types";
 
 const network = hre.network.name;
 const envConfig = dotenv.parse(fs.readFileSync(`.env-${network}`));
@@ -18,8 +19,7 @@ async function main() {
     `Owner account balance: ${hre.ethers.utils.formatEther(balance).toString()}`
   );
 
-  const Token = await hre.ethers.getContractFactory(process.env.TOKEN_NAME as string);
-  const token = await Token.deploy(
+  const token = await new Asset20__factory(owner).deploy(
     process.env.TOKEN_NAME_FULL as string,
     process.env.TOKEN_SYMBOL as string
   );

@@ -1,5 +1,8 @@
 import { ethers, network } from "hardhat";
+import { BigNumber } from "ethers";
 
+const ONE = ethers.constants.One;
+const TWO = ethers.constants.Two;
 const zeroAddr = ethers.constants.AddressZero;
 
 // AccessControl roles in bytes32 string
@@ -31,4 +34,15 @@ const snapshot = {
 const getCurrentTimestamp = async () =>
   (await ethers.provider.getBlock(await ethers.provider.getBlockNumber())).timestamp;
 
-export { zeroAddr, roles, interfaceIds, snapshot, getCurrentTimestamp };
+const bigSqrt = (value: BigNumber) => {
+  const x = ethers.BigNumber.from(value);
+  let z = x.add(ONE).div(TWO);
+  let y = x;
+  while (z.sub(y).isNegative()) {
+    y = z;
+    z = x.div(z).add(z).div(TWO);
+  }
+  return y;
+};
+
+export { zeroAddr, roles, interfaceIds, snapshot, getCurrentTimestamp, bigSqrt };
