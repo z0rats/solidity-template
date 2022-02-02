@@ -19,12 +19,11 @@ Try running some of the following tasks and don't forget to specify network (ex.
 * `hh` is a [shorthand](https://hardhat.org/guides/shorthand.html) for `npx hardhat`
 
 ```shell
-hh run scripts/deploy.ts --network mumbai
+hh run scripts/deploy.ts
 
 hh coverage
 hh test test/token.test.ts
-GAS=true hh test test/token.test.ts
 
 hh accounts
-hh token-balance --account <addrs> --network mumbai
+hh token-balance --account <addrs>
 ```
