@@ -34,7 +34,7 @@ if (!alchemyApiKey) {
 }
 
 function createNetworkConfig(network: keyof typeof chainIds): NetworkUserConfig {
-  const url: string = `https://eth-${network}.g.alchemy.com/v2/${alchemyApiKey}`;
+  const url: string = `https://eth-${network}.alchemyapi.io/v2/${alchemyApiKey}`;
   return {
     accounts: {
       count: 10,
