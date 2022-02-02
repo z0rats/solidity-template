@@ -28,4 +28,7 @@ const snapshot = {
   },
 };
 
-export { zeroAddr, roles, interfaceIds, snapshot };
+const getCurrentTimestamp = async () =>
+  (await ethers.provider.getBlock(await ethers.provider.getBlockNumber())).timestamp;
+
+export { zeroAddr, roles, interfaceIds, snapshot, getCurrentTimestamp };
