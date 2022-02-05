@@ -25,5 +25,5 @@ hh coverage
 hh test test/token.test.ts
 
 hh accounts
-hh token-balance --account <addrs>
+hh balance --account <addrs>
 ```

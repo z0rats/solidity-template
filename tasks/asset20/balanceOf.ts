@@ -2,8 +2,9 @@ import fs from "fs";
 import { task } from "hardhat/config";
 import dotenv from "dotenv";
 
-task("token-balance", "Prints an account's token balance")
-  .addParam("account", "The account's address")
+task("balance", "Prints an account's token balance")
+  .addParam("account", "The address to check token balance of")
+  .addOptionalParam("token", "Token contract address. By default grab it from .env")
   .setAction(async (taskArgs, hre) => {
     const network = hre.network.name;
     const envConfig = dotenv.parse(fs.readFileSync(`.env-${network}`));
@@ -13,7 +14,7 @@ task("token-balance", "Prints an account's token balance")
 
     const token = await hre.ethers.getContractAt(
       process.env.TOKEN_NAME as string,
-      process.env.TOKEN_ADDRESS as string
+      taskArgs.token || (process.env.ASSET20_TOKEN_ADDRESS as string)
     );
 
     const balance = await token.balanceOf(taskArgs.account);
