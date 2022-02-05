@@ -31,9 +31,18 @@ const snapshot = {
   },
 };
 
+// Returns current block timestamp
 const getCurrentTimestamp = async () =>
   (await ethers.provider.getBlock(await ethers.provider.getBlockNumber())).timestamp;
 
+// `evm_increaseTime` receives a number of seconds that will be added to
+// the timestamp of the latest block. `evm_mine` force a block to be mined.
+const increaseTime = async (seconds: number) => {
+  // await network.provider.send("evm_increaseTime", [seconds]);
+  await network.provider.send("evm_mine", [seconds]);
+};
+
+// Computes square root of BigNumber value type
 const bigSqrt = (value: BigNumber) => {
   const x = ethers.BigNumber.from(value);
   let z = x.add(ONE).div(TWO);
@@ -45,4 +54,12 @@ const bigSqrt = (value: BigNumber) => {
   return y;
 };
 
-export { zeroAddr, roles, interfaceIds, snapshot, getCurrentTimestamp, bigSqrt };
+export {
+  zeroAddr,
+  roles,
+  interfaceIds,
+  snapshot,
+  getCurrentTimestamp,
+  increaseTime,
+  bigSqrt,
+};
