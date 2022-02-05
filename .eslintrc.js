@@ -20,7 +20,7 @@ module.exports = {
       "error",
       { ignores: ["modules"] },
     ],
-    "node/no-unpublished-import": ["warn"],
+    "node/no-unpublished-import": ["off"],
     "max-len": [1, { code: 90 }],
     "node/no-missing-import": ["error", {
       "tryExtensions": [".ts", ".js", ".json", ".node"]
