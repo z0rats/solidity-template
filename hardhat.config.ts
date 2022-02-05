@@ -67,6 +67,7 @@ const config: HardhatUserConfig = {
     },
     mumbai: createNetworkConfig("mumbai"),
     rinkeby: createNetworkConfig("rinkeby"),
+    kovan: createNetworkConfig("kovan"),
     bscTestnet: {
       accounts: {
         count: 10,

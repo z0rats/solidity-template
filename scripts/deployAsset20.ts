@@ -1,7 +1,9 @@
 import fs from "fs";
 import dotenv from "dotenv";
-import hre from "hardhat";
+import hre, { artifacts } from "hardhat";
+import path from "path";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
+
 import { Asset20__factory } from "../types";
 
 const network = hre.network.name;
@@ -25,14 +27,34 @@ async function main() {
   );
 
   await token.deployed();
-  console.log(`Token deployed to ${token.address}`);
+  console.log(`ERC20 token deployed to ${token.address}`);
 
   // Sync env file
   fs.appendFileSync(
     `.env-${network}`,
-    `\r\# Deployed at \rTOKEN_ADDRESS=${token.address}\r`
+    `\r\# Deployed at \rASSET20_TOKEN_ADDRESS=${token.address}\r`
   );
+
+  // Saving artifacts and address in `/frontend`
+  saveFrontendFiles();
 }
+
+// NOTE: Below script can be used to save artifacts and deploy addresses in some
+// other folder, for example `/frontend` or `/backend`
+const saveFrontendFiles = () => {
+  const contractsDir = path.join(__dirname, "/../frontend/src/contracts");
+
+  if (!fs.existsSync(contractsDir)) {
+    fs.mkdirSync(contractsDir);
+  }
+
+  const Artifact = artifacts.readArtifactSync(process.env.TOKEN_NAME as string);
+
+  fs.writeFileSync(
+    path.join(contractsDir, `/${process.env.TOKEN_NAME}.json`),
+    JSON.stringify(Artifact, null, 2)
+  );
+};
 
 main().catch((error) => {
   console.error(error);
