@@ -12,6 +12,7 @@ import "solidity-coverage";
 import "./tasks/index.ts";
 
 const chainIds = {
+  ganache: 1337,
   hardhat: 31337,
   mainnet: 1,
   ropsten: 3,
@@ -49,13 +50,20 @@ function createNetworkConfig(network: keyof typeof chainIds): NetworkUserConfig 
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.10",
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200,
+    compilers: [
+      {
+        version: "0.8.10",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
       },
-    },
+      {
+        version: "0.7.5",
+      },
+    ],
   },
   defaultNetwork: "hardhat",
   networks: {
