@@ -15,6 +15,9 @@ const zeroAddr = ethers.constants.AddressZero;
 const itemURI = "https://gateway.pinata.cloud/ipfs/uri/1.json";
 
 describe("Academy721", function () {
+  // This can be used if tests are too long
+  // this.timeout(60000);
+
   let nft: Asset721,
     owner: SignerWithAddress,
     alice: SignerWithAddress,
