@@ -15,6 +15,9 @@ const tenTokens = ethers.utils.parseUnits("10.0", decimals);
 const twentyTokens = ethers.utils.parseUnits("20.0", decimals);
 
 describe("Token", function () {
+  // This can be used if tests are too long
+  // this.timeout(60000);
+
   let token: Asset20,
     owner: SignerWithAddress,
     alice: SignerWithAddress,
