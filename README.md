@@ -1,8 +1,12 @@
-# Solidity project template
+# Solidity Template
 
 This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
 
 The project comes with a simple ERC-20 token implementation and AccessControl with minter & burner roles. There are also tests, deploy script and CI config.
+
+## Installation
+
+`npm ci`
 
 ### How to run
 
