@@ -1,7 +1,7 @@
 {
   "name": "solidity-template",
   "version": "1.0.0",
-  "description": "",
+  "description": "Solidity project template",
   "main": "index.js",
   "engines": {
     "node": ">=16.10.0"
@@ -11,13 +11,13 @@
     "typechain": "hardhat typechain"
   },
   "keywords": [],
-  "author": "",
+  "author": "v0xat",
   "license": "MIT",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",
     "@nomiclabs/hardhat-etherscan": "^3.0.1",
     "@nomiclabs/hardhat-waffle": "^2.0.2",
-    "@openzeppelin/contracts": "^4.4.1",
+    "@openzeppelin/contracts": "^4.5.0",
     "@typechain/ethers-v5": "^9.0.0",
     "@typechain/hardhat": "^4.0.0",
     "@types/chai": "^4.3.0",
