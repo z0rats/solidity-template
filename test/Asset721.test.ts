@@ -41,16 +41,10 @@ describe("Academy721", function () {
   });
 
   describe("Deployment", function () {
-    it("Has a name", async () => {
+    it("Has a correct init params", async () => {
       expect(await nft.name()).to.be.equal(name);
-    });
-
-    it("Has a symbol", async () => {
       expect(await nft.symbol()).to.be.equal(symbol);
-    });
-
-    it("Should set the correct owner of the contract", async () => {
-      expect(await nft.owner()).to.equal(owner.address);
+      expect(await nft.owner()).to.be.equal(owner.address);
     });
   });
 

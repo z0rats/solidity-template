@@ -47,28 +47,13 @@ describe("Token", function () {
   });
 
   describe("Deployment", function () {
-    it("Has a name", async () => {
+    it("Has correct init params", async () => {
       expect(await token.name()).to.be.equal(tokenName);
-    });
-
-    it("Has a symbol", async () => {
       expect(await token.symbol()).to.be.equal(symbol);
-    });
-
-    it(`Has ${decimals} decimals`, async () => {
       expect(await token.decimals()).to.be.equal(decimals);
-    });
-
-    it("Should set the right admin role", async () => {
-      expect(await token.hasRole(roles.admin, owner.address)).to.equal(true);
-    });
-
-    it("Should set the right minter role", async () => {
-      expect(await token.hasRole(roles.minter, alice.address)).to.equal(true);
-    });
-
-    it("Should set the right burner role", async () => {
-      expect(await token.hasRole(roles.burner, bob.address)).to.equal(true);
+      expect(await token.hasRole(roles.admin, owner.address)).to.be.equal(true);
+      expect(await token.hasRole(roles.minter, alice.address)).to.be.equal(true);
+      expect(await token.hasRole(roles.burner, bob.address)).to.be.equal(true);
     });
   });
 
@@ -215,10 +200,10 @@ describe("Token", function () {
       await token.connect(bob).burn(owner.address, burnAmount);
 
       const currentSupply = await token.totalSupply();
-      expect(currentSupply).to.equal(initialSupply.sub(burnAmount));
+      expect(currentSupply).to.be.equal(initialSupply.sub(burnAmount));
 
       const ownerBalance = await token.balanceOf(owner.address);
-      expect(ownerBalance).to.equal(initialOwnerBalance.sub(burnAmount));
+      expect(ownerBalance).to.be.equal(initialOwnerBalance.sub(burnAmount));
     });
 
     it("Can not burn above total supply", async () => {
@@ -255,10 +240,10 @@ describe("Token", function () {
       await token.connect(alice).mint(owner.address, mintAmount);
 
       const currentSupply = await token.totalSupply();
-      expect(currentSupply).to.equal(initialSupply.add(mintAmount));
+      expect(currentSupply).to.be.equal(initialSupply.add(mintAmount));
 
       const ownerBalance = await token.balanceOf(owner.address);
-      expect(ownerBalance).to.equal(initialOwnerBalance.add(mintAmount));
+      expect(ownerBalance).to.be.equal(initialOwnerBalance.add(mintAmount));
     });
   });
 });
