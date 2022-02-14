@@ -90,7 +90,7 @@ describe("Token", function () {
       const amount: BigNumber = ethers.utils.parseUnits("20.0", decimals);
       await token.transfer(alice.address, amount);
       const aliceBalance = await token.balanceOf(alice.address);
-      expect(aliceBalance).to.equal(amount);
+      expect(aliceBalance).to.be.equal(amount);
     });
 
     it("Should fail if sender doesn't have enough tokens", async () => {
@@ -101,7 +101,7 @@ describe("Token", function () {
 
       // Owner balance shouldn't have changed
       const ownerBalance = await token.balanceOf(owner.address);
-      expect(await token.balanceOf(owner.address)).to.equal(ownerBalance);
+      expect(await token.balanceOf(owner.address)).to.be.equal(ownerBalance);
     });
 
     it("Can not transfer above the amount", async () => {
@@ -172,7 +172,7 @@ describe("Token", function () {
       // Trying to transfer 20 tokens
       await expect(
         token.connect(alice).transferFrom(owner.address, alice.address, twentyTokens)
-      ).to.be.revertedWith("ERC20: transfer amount exceeds allowance");
+      ).to.be.revertedWith("ERC20: insufficient allowance");
     });
 
     it("Can not TransferFrom if owner does not have enough tokens", async () => {
