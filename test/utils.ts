@@ -38,8 +38,8 @@ const getCurrentTimestamp = async () =>
 // `evm_increaseTime` receives a number of seconds that will be added to
 // the timestamp of the latest block. `evm_mine` force a block to be mined.
 const increaseTime = async (seconds: number) => {
-  // await network.provider.send("evm_increaseTime", [seconds]);
-  await network.provider.send("evm_mine", [seconds]);
+  await network.provider.send("evm_increaseTime", [seconds]);
+  await network.provider.send("evm_mine");
 };
 
 // Computes square root of BigNumber value type
