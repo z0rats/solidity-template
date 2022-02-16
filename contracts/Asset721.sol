@@ -1,16 +1,15 @@
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.10;
+pragma solidity ^0.8.11;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-/** ERC721 item creation contract. */
+/// @title ERC721 item creation contract.
 contract Asset721 is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
-    /** A counter for tracking token ids. */
+    /// A counter for tracking token ids.
     Counters.Counter private tokenIds;
 
     /** @notice Creates a new ERC-721 item collection.
