@@ -6,7 +6,7 @@ import "@typechain/hardhat";
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.11",
+    version: "0.8.12",
   },
   defaultNetwork: "hardhat",
   paths: {
