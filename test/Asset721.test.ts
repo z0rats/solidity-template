@@ -4,14 +4,13 @@ import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
 import { Asset721, Asset721__factory } from "../types";
 
-import { snapshot } from "./utils";
+import { zeroAddr, snapshot } from "./utils";
 
 // NFT metadata
 const name = "Asset721";
 const symbol = "nft721";
 
 // Test data
-const zeroAddr = ethers.constants.AddressZero;
 const itemURI = "https://gateway.pinata.cloud/ipfs/uri/1.json";
 
 describe("Academy721", function () {
