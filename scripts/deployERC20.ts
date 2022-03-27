@@ -1,6 +1,6 @@
 import fs from "fs";
 import dotenv from "dotenv";
-import hre, { artifacts } from "hardhat";
+import hre, { artifacts, run } from "hardhat";
 import path from "path";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
@@ -32,8 +32,16 @@ async function main() {
   // Sync env file
   fs.appendFileSync(
     `.env-${network}`,
-    `\r\# Deployed at \rASSET20_TOKEN_ADDRESS=${token.address}\r`
+    `\r\# Deployed at \rTOKEN_ADDRESS=${token.address}\r`
   );
+
+  // Verifying contract
+  console.log("Verifying...");
+  await run("verify:verify", {
+    address: token.address,
+    contract: "contracts/ERC20.sol:Token",
+    constructorArguments: [process.env.TOKEN_NAME_FULL, process.env.TOKEN_SYMBOL]
+  });
 
   // Saving artifacts and address in `/frontend`
   // saveFrontendFiles();
