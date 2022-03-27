@@ -3,7 +3,7 @@ import { ethers } from "hardhat";
 import { BigNumber } from "ethers";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
-import { Asset20, Asset20__factory } from "../types";
+import { Token, Token__factory } from "../types";
 
 import { roles, snapshot } from "./utils";
 
@@ -14,11 +14,11 @@ const decimals = 18;
 const tenTokens = ethers.utils.parseUnits("10.0", decimals);
 const twentyTokens = ethers.utils.parseUnits("20.0", decimals);
 
-describe("Token", function () {
+describe("ERC20 Token", function () {
   // This can be used if tests are too long
   // this.timeout(60000);
 
-  let token: Asset20,
+  let token: Token,
     owner: SignerWithAddress,
     alice: SignerWithAddress,
     bob: SignerWithAddress,
@@ -26,7 +26,7 @@ describe("Token", function () {
 
   before(async () => {
     [owner, alice, bob] = await ethers.getSigners();
-    token = await new Asset20__factory(owner).deploy(tokenName, symbol);
+    token = await new Token__factory(owner).deploy(tokenName, symbol);
     await token.deployed();
 
     // Grant roles and mint some tokens

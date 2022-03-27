@@ -4,7 +4,7 @@ import hre, { artifacts } from "hardhat";
 import path from "path";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
-import { Asset20__factory } from "../types";
+import { Token__factory } from "../types";
 
 const network = hre.network.name;
 const envConfig = dotenv.parse(fs.readFileSync(`.env-${network}`));
@@ -21,7 +21,7 @@ async function main() {
     `Owner account balance: ${hre.ethers.utils.formatEther(balance).toString()}`
   );
 
-  const token = await new Asset20__factory(owner).deploy(
+  const token = await new Token__factory(owner).deploy(
     process.env.TOKEN_NAME_FULL as string,
     process.env.TOKEN_SYMBOL as string
   );
@@ -36,7 +36,7 @@ async function main() {
   );
 
   // Saving artifacts and address in `/frontend`
-  saveFrontendFiles();
+  // saveFrontendFiles();
 }
 
 // NOTE: Below script can be used to save artifacts and deploy addresses in some
