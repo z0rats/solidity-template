@@ -34,8 +34,17 @@ if (!alchemyApiKey) {
   throw new Error("Please set your ALCHEMY_API_KEY in a .env file");
 }
 
+const alchemyPolygonKey: string | undefined = process.env.ALCHEMY_POLYGON_KEY;
+if (!alchemyPolygonKey) {
+  throw new Error("Please set your ALCHEMY_POLYGON_KEY in a .env file");
+}
+
 function createNetworkConfig(network: keyof typeof chainIds): NetworkUserConfig {
-  const url: string = `https://eth-${network}.alchemyapi.io/v2/${alchemyApiKey}`;
+  let url: string;
+  if (network === "mumbai")
+    url = `https://polygon-${network}.g.alchemy.com/v2/${alchemyPolygonKey}`;
+  else url = `https://eth-${network}.alchemyapi.io/v2/${alchemyApiKey}`;
+
   return {
     accounts: {
       count: 10,
