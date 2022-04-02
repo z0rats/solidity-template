@@ -20,6 +20,7 @@ const chainIds = {
   goerli: 5,
   kovan: 42,
   mumbai: 80001,
+  matic: 137,
   bscTestnet: 97,
 };
 
@@ -50,6 +51,14 @@ function createNetworkConfig(network: keyof typeof chainIds): NetworkUserConfig 
       count: 10,
       mnemonic,
     },
+    // Ledger config
+    // accounts: [
+    //   {
+    //     platform: "ledger",
+    //     type: "hid",
+    //     path: "m/44'/60'/0'/0/0"
+    //   }
+    // ],
     chainId: chainIds[network],
     url,
     // gas: 2100000,
