@@ -54,6 +54,9 @@ const bigSqrt = (value: BigNumber) => {
   return y;
 };
 
+// Wait `ms` before executing next line
+const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+
 export {
   zeroAddr,
   roles,
@@ -62,4 +65,5 @@ export {
   getCurrentTimestamp,
   increaseTime,
   bigSqrt,
+  delay,
 };
