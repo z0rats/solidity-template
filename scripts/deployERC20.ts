@@ -14,12 +14,13 @@ for (const parameter in envConfig) {
 
 async function main() {
   const [owner]: SignerWithAddress[] = await hre.ethers.getSigners();
-  console.log("Owner address: ", owner.address);
+  console.log("Sender address: ", owner.address);
 
   const balance = await owner.getBalance();
-  console.log(
-    `Owner account balance: ${hre.ethers.utils.formatEther(balance).toString()}`
-  );
+  console.log(`Sender balance: ${hre.ethers.utils.formatEther(balance).toString()}`);
+
+  const gasPrice = await hre.network.provider.send("eth_gasPrice");
+  console.log(`gasPrice: ${hre.ethers.utils.formatEther(gasPrice).toString()} eth`);
 
   const token = await new Token__factory(owner).deploy(
     process.env.TOKEN_NAME_FULL as string,
