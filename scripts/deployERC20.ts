@@ -4,6 +4,7 @@ import hre, { artifacts, run } from "hardhat";
 import path from "path";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
+import { delay } from "../test/utils";
 import { Token__factory } from "../types";
 
 const network = hre.network.name;
@@ -35,6 +36,9 @@ async function main() {
     `.env-${network}`,
     `\r\# Deployed at \rTOKEN_ADDRESS=${token.address}\r`
   );
+
+  console.log("Waiting few seconds before running verify...");
+  await delay(5000);
 
   // Verifying contract
   console.log("Verifying...");
