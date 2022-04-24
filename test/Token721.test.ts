@@ -2,22 +2,22 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
-import { NFT, NFT__factory } from "../types";
+import { Token721, Token721__factory } from "../types";
 
 import { zeroAddr, snapshot } from "./utils";
 
 // NFT metadata
-const name = "Asset721";
-const symbol = "nft721";
+const name = "Token721";
+const symbol = "nft";
 
 // Test data
 const itemURI = "https://gateway.pinata.cloud/ipfs/uri/1.json";
 
-describe("ERC721 nft", function () {
+describe("ERC721 Token", function () {
   // This can be used if tests are too long
   // this.timeout(60000);
 
-  let nft: NFT,
+  let nft: Token721,
     owner: SignerWithAddress,
     alice: SignerWithAddress,
     bob: SignerWithAddress,
@@ -25,7 +25,7 @@ describe("ERC721 nft", function () {
 
   before(async () => {
     [owner, alice, bob] = await ethers.getSigners();
-    nft = await new NFT__factory(owner).deploy(name, symbol);
+    nft = await new Token721__factory(owner).deploy(name, symbol);
     await nft.deployed();
   });
 
