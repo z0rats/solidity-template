@@ -5,7 +5,7 @@ import path from "path";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
 import { delay } from "../test/utils";
-import { Token__factory } from "../types";
+import { Token20__factory } from "../types";
 
 const network = hre.network.name;
 const envConfig = dotenv.parse(fs.readFileSync(`.env-${network}`));
@@ -23,18 +23,18 @@ async function main() {
   const gasPrice = await hre.network.provider.send("eth_gasPrice");
   console.log(`gasPrice: ${hre.ethers.utils.formatEther(gasPrice).toString()} eth`);
 
-  const token = await new Token__factory(owner).deploy(
+  const token = await new Token20__factory(owner).deploy(
     process.env.TOKEN_NAME_FULL as string,
     process.env.TOKEN_SYMBOL as string
   );
 
   await token.deployed();
-  console.log(`ERC20 token deployed to ${token.address}`);
+  console.log(`Contract deployed to ${token.address}`);
 
   // Sync env file
   fs.appendFileSync(
     `.env-${network}`,
-    `\r\# Deployed at \rTOKEN_ADDRESS=${token.address}\r`
+    `\r\# Deployed at \rTOKEN_20_ADDRESS=${token.address}\r`
   );
 
   console.log("Waiting few seconds before running verify...");
@@ -44,8 +44,8 @@ async function main() {
   console.log("Verifying...");
   await run("verify:verify", {
     address: token.address,
-    contract: "contracts/ERC20.sol:Token",
-    constructorArguments: [process.env.TOKEN_NAME_FULL, process.env.TOKEN_SYMBOL]
+    contract: "contracts/Token20.sol:Token20",
+    constructorArguments: [process.env.TOKEN_NAME_FULL, process.env.TOKEN_SYMBOL],
   });
 
   // Saving artifacts and address in `/frontend`
