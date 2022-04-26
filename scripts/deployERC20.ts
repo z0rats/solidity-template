@@ -37,8 +37,8 @@ async function main() {
     `\r\# Deployed at \rTOKEN_20_ADDRESS=${token.address}\r`
   );
 
-  console.log("Waiting few seconds before running verify...");
-  await delay(5000);
+  console.log("Waiting 15 seconds before running verify...");
+  await delay(15000);
 
   // Verifying contract
   console.log("Verifying...");
