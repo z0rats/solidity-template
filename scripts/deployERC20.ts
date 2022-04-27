@@ -29,7 +29,7 @@ async function main() {
   );
 
   await token.deployed();
-  console.log(`Contract deployed to ${token.address}`);
+  console.log(`✅ Contract deployed to ${token.address}`);
 
   // Sync env file
   fs.appendFileSync(

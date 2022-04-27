@@ -27,5 +27,5 @@ task("grantRole", "Grants role to account")
 
     console.log(`\nGranting role ${role} to ${taskArgs.to}...\n`);
     await token.grantRole(role, taskArgs.to);
-    console.log(`Tx sent!`);
+    console.log(`✅ Tx sent!`);
   });
