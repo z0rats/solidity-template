@@ -6,11 +6,9 @@ import { Token721, Token721__factory } from "../types";
 
 import { zeroAddr, snapshot } from "./utils";
 
-// NFT metadata
+// Test dataNFT
 const name = "Token721";
 const symbol = "nft";
-
-// Test data
 const itemURI = "https://gateway.pinata.cloud/ipfs/uri/1.json";
 
 describe("ERC721 Token", function () {

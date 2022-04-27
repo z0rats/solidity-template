@@ -7,7 +7,7 @@ import { Token20, Token20__factory } from "../types";
 
 import { roles, snapshot } from "./utils";
 
-// Token metadata
+// Test data
 const tokenName = "Token20";
 const symbol = "CRPT";
 const decimals = 18;

@@ -3,17 +3,15 @@ import { ethers } from "hardhat";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
 import { Token1155, Token1155__factory } from "../types";
-import { snapshot } from "./utils";
+import { snapshot, zeroAddr } from "./utils";
 
+// Test data
 const name = "Token1155";
 const symbol = "TKN";
 const uri = "https://gateway.pinata.cloud/ipfs/uri/{id}.json";
 const mintIds = [0, 1];
 const mintAmounts = [5, 15];
-const DATA = "0x02";
-
-// Test data
-const zeroAddr = ethers.constants.AddressZero;
+const data = "0x";
 
 describe("ERC1155 Token", function () {
   let nft: Token1155,
@@ -30,8 +28,8 @@ describe("ERC1155 Token", function () {
 
   beforeEach(async () => {
     snapId = await snapshot.take();
-    await nft.mintBatch(owner.address, mintIds, mintAmounts, DATA);
-    await nft.mintBatch(alice.address, mintIds, mintAmounts, DATA);
+    await nft.mintBatch(owner.address, mintIds, mintAmounts, data);
+    await nft.mintBatch(alice.address, mintIds, mintAmounts, data);
   });
 
   afterEach(async () => {
@@ -58,7 +56,7 @@ describe("ERC1155 Token", function () {
   describe("Ownership", function () {
     it("Only owner can mint items", async () => {
       await expect(
-        nft.connect(alice).mintBatch(alice.address, mintIds, mintAmounts, DATA)
+        nft.connect(alice).mintBatch(alice.address, mintIds, mintAmounts, data)
       ).to.be.revertedWith("Ownable: caller is not the owner");
     });
 
@@ -71,14 +69,14 @@ describe("ERC1155 Token", function () {
 
   describe("Minting", function () {
     it("Mint batch emits event", async () => {
-      await expect(nft.mintBatch(owner.address, mintIds, mintAmounts, DATA))
+      await expect(nft.mintBatch(owner.address, mintIds, mintAmounts, data))
         .to.emit(nft, "TransferBatch")
         .withArgs(owner.address, zeroAddr, owner.address, mintIds, mintAmounts);
     });
 
     it("Can't mint to zero address", async () => {
       await expect(
-        nft.mintBatch(zeroAddr, mintIds, mintAmounts, DATA)
+        nft.mintBatch(zeroAddr, mintIds, mintAmounts, data)
       ).to.be.revertedWith("ERC1155: mint to the zero address");
     });
   });
@@ -105,14 +103,14 @@ describe("ERC1155 Token", function () {
 
   describe("Transfers", function () {
     it("safeTransfer from emits event", async () => {
-      await expect(nft.safeTransferFrom(owner.address, alice.address, 0, 2, DATA))
+      await expect(nft.safeTransferFrom(owner.address, alice.address, 0, 2, data))
         .to.emit(nft, "TransferSingle")
         .withArgs(owner.address, owner.address, alice.address, 0, 2);
     });
 
     it("safeBatchTransfer from emits event", async () => {
       await expect(
-        nft.safeBatchTransferFrom(owner.address, alice.address, [0, 1], [1, 1], DATA)
+        nft.safeBatchTransferFrom(owner.address, alice.address, [0, 1], [1, 1], data)
       )
         .to.emit(nft, "TransferBatch")
         .withArgs(owner.address, owner.address, alice.address, [0, 1], [1, 1]);
@@ -120,10 +118,10 @@ describe("ERC1155 Token", function () {
 
     it("Can't transfer from if caller is not owner nor approved", async () => {
       await expect(
-        nft.safeTransferFrom(alice.address, owner.address, 0, 2, DATA)
+        nft.safeTransferFrom(alice.address, owner.address, 0, 2, data)
       ).to.be.revertedWith("ERC1155: caller is not owner nor approved");
       await expect(
-        nft.safeBatchTransferFrom(alice.address, owner.address, [0, 1], [1, 1], DATA)
+        nft.safeBatchTransferFrom(alice.address, owner.address, [0, 1], [1, 1], data)
       ).to.be.revertedWith("ERC1155: transfer caller is not owner nor approved");
     });
   });
