@@ -25,5 +25,5 @@ task("mint", "Mint tokens on provided account")
 
     console.log(`\nMinting ${taskArgs.amount} tokens to ${taskArgs.to}...\n`);
     await token.mint(taskArgs.to, amount);
-    console.log(`Tx sent!`);
+    console.log(`✅ Tx sent!`);
   });

@@ -25,5 +25,5 @@ task("burn", "Burn tokens on provided account")
 
     console.log(`\nBurning ${taskArgs.amount} tokens from ${taskArgs.from}...\n`);
     await token.burn(taskArgs.from, amount);
-    console.log(`Tx sent!`);
+    console.log(`✅ Tx sent!`);
   });

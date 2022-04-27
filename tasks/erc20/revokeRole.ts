@@ -27,5 +27,5 @@ task("revokeRole", "Revokes role from account")
 
     console.log(`\nRevoking role ${role} from ${taskArgs.from}...\n`);
     await token.revokeRole(role, taskArgs.from);
-    console.log(`Tx sent!`);
+    console.log(`✅ Tx sent!`);
   });
