@@ -51,6 +51,7 @@ function createNetworkConfig(network: keyof typeof chainIds): NetworkUserConfig 
       count: 10,
       mnemonic,
     },
+    // accounts: [privateKey1, privateKey2, ...],
     // Ledger config
     // accounts: [
     //   {
