@@ -22,7 +22,7 @@ Try running some of the following tasks and don't forget to specify network (ex.
 
 * `hh` is a [shorthand](https://hardhat.org/guides/shorthand.html) for `npx hardhat`
 
-```shell
+```
 hh run scripts/deploy.ts
 
 hh coverage
