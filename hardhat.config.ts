@@ -140,8 +140,10 @@ const config: HardhatUserConfig = {
     // enabled by default
     // enabled: process.env.GAS ? true : false,
     currency: "USD",
-    token: "ETH",
-    gasPriceApi: "https://api.etherscan.io/api?module=proxy&action=eth_gasPrice",
+    // token: "ETH",
+    // gasPriceApi: "https://api.etherscan.io/api?module=proxy&action=eth_gasPrice",
+    token: "MATIC",
+    gasPriceApi: "https://api.polygonscan.com/api?module=proxy&action=eth_gasPrice",
     // gasPrice: 22,
     coinmarketcap: process.env.CMC_API_KEY,
   },

@@ -24,13 +24,13 @@ describe("ERC721 Token", function () {
   before(async () => {
     [owner, alice, bob] = await ethers.getSigners();
     nft = await new Token721__factory(owner).deploy(name, symbol);
-    await nft.deployed();
+
+    await nft.safeMint(owner.address, itemURI);
+    await nft.safeMint(alice.address, itemURI);
   });
 
   beforeEach(async () => {
     snapId = await snapshot.take();
-    await nft.safeMint(owner.address, itemURI);
-    await nft.safeMint(alice.address, itemURI);
   });
 
   afterEach(async () => {
