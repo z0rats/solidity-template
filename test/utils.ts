@@ -13,7 +13,11 @@ const roles = {
 };
 
 const interfaceIds = {
-  erc721: "0x80ac58cd",
+  erc165: "0x01ffc9a7",
+  ierc721: "0x80ac58cd",
+  ierc721a: "0xc21b8f28",
+  erc721metadata: "0x5b5e139f",
+  erc721enumerable: "0x780e9d63",
 };
 
 const snapshot = {
