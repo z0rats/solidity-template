@@ -61,6 +61,27 @@ const bigSqrt = (value: BigNumber) => {
 // Wait `ms` before executing next line
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+const mineSingleBlock = async () => {
+  await network.provider.send("hardhat_mine", [ethers.utils.hexValue(1).toString()]);
+};
+
+const simulateNextBlockTime = async (baseTime: any, changeBy: number) => {
+  const bi = ethers.BigNumber.from(baseTime);
+  await network.provider.send("evm_setNextBlockTimestamp", [
+    ethers.utils.hexlify(bi.add(changeBy)),
+  ]);
+  await mineSingleBlock();
+};
+
+const toBytes32 = (bn: any) => {
+  return ethers.utils.hexlify(ethers.utils.zeroPad(bn.toHexString(), 32));
+};
+
+const setStorageAt = async (address: string, index: string, value: any) => {
+  await ethers.provider.send("hardhat_setStorageAt", [address, index, value]);
+  await ethers.provider.send("evm_mine", []); // Just mines to the next block
+};
+
 export {
   zeroAddr,
   roles,
@@ -70,4 +91,7 @@ export {
   increaseTime,
   bigSqrt,
   delay,
+  simulateNextBlockTime,
+  toBytes32,
+  setStorageAt,
 };
