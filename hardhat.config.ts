@@ -71,7 +71,7 @@ const config: HardhatUserConfig = {
   solidity: {
     compilers: [
       {
-        version: "0.8.14",
+        version: "0.8.15",
         settings: {
           optimizer: {
             enabled: true,
@@ -107,17 +107,17 @@ const config: HardhatUserConfig = {
   },
   etherscan: {
     apiKey: {
-      mainnet: process.env.ETHERSCAN_API_KEY,
-      ropsten: process.env.ETHERSCAN_API_KEY,
-      rinkeby: process.env.ETHERSCAN_API_KEY,
-      goerli: process.env.ETHERSCAN_API_KEY,
-      kovan: process.env.ETHERSCAN_API_KEY,
+      mainnet: process.env.ETHERSCAN_API_KEY as string,
+      ropsten: process.env.ETHERSCAN_API_KEY as string,
+      rinkeby: process.env.ETHERSCAN_API_KEY as string,
+      goerli: process.env.ETHERSCAN_API_KEY as string,
+      kovan: process.env.ETHERSCAN_API_KEY as string,
       // binance smart chain
-      bsc: process.env.BSCSCAN_API_KEY,
-      bscTestnet: process.env.BSCSCAN_API_KEY,
+      bsc: process.env.BSCSCAN_API_KEY as string,
+      bscTestnet: process.env.BSCSCAN_API_KEY as string,
       // polygon
-      polygon: process.env.POLYGONSCAN_API_KEY,
-      polygonMumbai: process.env.POLYGONSCAN_API_KEY,
+      polygon: process.env.POLYGONSCAN_API_KEY as string,
+      polygonMumbai: process.env.POLYGONSCAN_API_KEY as string,
     },
   },
   paths: {
