@@ -80,7 +80,7 @@ describe("ERC721 Token", function () {
 
     it("Can't get approved for nonexistent token", async () => {
       await expect(nft.getApproved(1337)).to.be.revertedWith(
-        "ERC721: approved query for nonexistent token"
+        "ERC721: invalid token ID"
       );
     });
 
@@ -92,7 +92,7 @@ describe("ERC721 Token", function () {
 
     it("Can't approve if caller is not owner nor approved for all", async () => {
       await expect(nft.approve(bob.address, 2)).to.be.revertedWith(
-        "ERC721: approve caller is not owner nor approved for all"
+        "ERC721: approve caller is not token owner nor approved for all"
       );
     });
   });
@@ -114,11 +114,11 @@ describe("ERC721 Token", function () {
 
     it("Can't transfer from if caller is not owner nor approved for all", async () => {
       await expect(nft.transferFrom(owner.address, alice.address, 2)).to.be.revertedWith(
-        "ERC721: transfer caller is not owner nor approved"
+        "ERC721: caller is not token owner nor approved"
       );
       await expect(
         nft["safeTransferFrom(address,address,uint256)"](owner.address, alice.address, 2)
-      ).to.be.revertedWith("ERC721: transfer caller is not owner nor approved");
+      ).to.be.revertedWith("ERC721: caller is not token owner nor approved");
     });
   });
 
@@ -137,13 +137,13 @@ describe("ERC721 Token", function () {
 
     it("Can't get owner for nonexistent token", async () => {
       await expect(nft.ownerOf(15)).to.be.revertedWith(
-        "ERC721: owner query for nonexistent token"
+        "ERC721: invalid token ID"
       );
     });
 
     it("Can't get balance of zero address", async () => {
       await expect(nft.balanceOf(zeroAddr)).to.be.revertedWith(
-        "ERC721: balance query for the zero address"
+        "ERC721: address zero is not a valid owner"
       );
     });
   });
