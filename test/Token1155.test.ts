@@ -119,10 +119,10 @@ describe("ERC1155 Token", function () {
     it("Can't transfer from if caller is not owner nor approved", async () => {
       await expect(
         nft.safeTransferFrom(alice.address, owner.address, 0, 2, data)
-      ).to.be.revertedWith("ERC1155: caller is not owner nor approved");
+      ).to.be.revertedWith("ERC1155: caller is not token owner nor approved");
       await expect(
         nft.safeBatchTransferFrom(alice.address, owner.address, [0, 1], [1, 1], data)
-      ).to.be.revertedWith("ERC1155: transfer caller is not owner nor approved");
+      ).to.be.revertedWith("ERC1155: caller is not token owner nor approved");
     });
   });
 
@@ -139,7 +139,7 @@ describe("ERC1155 Token", function () {
 
     it("Can't get balance of zero address", async () => {
       await expect(nft.balanceOf(zeroAddr, 0)).to.be.revertedWith(
-        "ERC1155: balance query for the zero address"
+        "ERC1155: address zero is not a valid owner"
       );
     });
   });
