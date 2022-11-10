@@ -116,13 +116,13 @@ describe("ERC1155 Token", function () {
         .withArgs(owner.address, owner.address, alice.address, [0, 1], [1, 1]);
     });
 
-    it("Can't transfer from if caller is not owner nor approved", async () => {
+    it("Can't transfer from if caller is not owner or approved", async () => {
       await expect(
         nft.safeTransferFrom(alice.address, owner.address, 0, 2, data)
-      ).to.be.revertedWith("ERC1155: caller is not token owner nor approved");
+      ).to.be.revertedWith("ERC1155: caller is not token owner or approved");
       await expect(
         nft.safeBatchTransferFrom(alice.address, owner.address, [0, 1], [1, 1], data)
-      ).to.be.revertedWith("ERC1155: caller is not token owner nor approved");
+      ).to.be.revertedWith("ERC1155: caller is not token owner or approved");
     });
   });
 
