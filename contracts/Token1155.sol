@@ -14,14 +14,23 @@ contract Token1155 is ERC1155, Ownable {
     string public symbol;
 
     /// @notice Creates a new ERC-1155 items contract.
-    constructor(string memory _name, string memory _symbol, string memory uri) ERC1155(uri) {
+    constructor(
+        string memory _name,
+        string memory _symbol,
+        string memory uri
+    ) ERC1155(uri) {
         name = _name;
         symbol = _symbol;
     }
 
     /// @notice Mints one item to address `to`.
     /// @param to The address to mint item on.
-    function mintBatch(address to, uint256[] memory ids, uint256[] memory amounts, bytes memory data) external onlyOwner {
+    function mintBatch(
+        address to,
+        uint256[] memory ids,
+        uint256[] memory amounts,
+        bytes memory data
+    ) external onlyOwner {
         _mintBatch(to, ids, amounts, data);
     }
 

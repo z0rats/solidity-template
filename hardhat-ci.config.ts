@@ -1,12 +1,10 @@
-import { HardhatUserConfig } from "hardhat/types";
-import "@nomiclabs/hardhat-waffle";
 import "hardhat-contract-sizer";
-import "solidity-coverage";
-import "@typechain/hardhat";
+
+import { HardhatUserConfig } from "hardhat/types";
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.18",
+    version: "0.8.19",
   },
   defaultNetwork: "hardhat",
   paths: {
@@ -20,10 +18,6 @@ const config: HardhatUserConfig = {
     disambiguatePaths: false,
     runOnCompile: true,
     strict: false,
-  },
-  typechain: {
-    outDir: "types",
-    target: "ethers-v5",
   },
 };
 

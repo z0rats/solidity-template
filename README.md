@@ -11,6 +11,7 @@ The project comes with a simple ERC-20 token implementation and AccessControl wi
 ### How to run
 
 Create a `.env` file using the `.env.example` template with the following content
+
 - [ALCHEMY_API_KEY](https://www.alchemy.com/)
 - [POLYGONSCAN_API_KEY](https://polygonscan.com/apis)
 - [CMC_API_KEY](https://coinmarketcap.com/api/)
@@ -20,7 +21,7 @@ Create a `.env` file using the `.env.example` template with the following conten
 
 Try running some of the following tasks and don't forget to specify network (ex. `--network mumbai`):
 
-* `hh` is a [shorthand](https://hardhat.org/guides/shorthand.html) for `npx hardhat`
+- `hh` is a [shorthand](https://hardhat.org/guides/shorthand.html) for `npx hardhat`
 
 ```
 hh run scripts/deploy.ts

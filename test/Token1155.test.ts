@@ -90,27 +90,39 @@ describe("ERC1155 Token", function () {
 
     it("Can check whether all owner items are approved", async () => {
       await nft.setApprovalForAll(bob.address, true);
-      expect(await nft.isApprovedForAll(owner.address, bob.address)).to.be.equal(true);
-      expect(await nft.isApprovedForAll(bob.address, owner.address)).to.be.equal(false);
+      expect(
+        await nft.isApprovedForAll(owner.address, bob.address)
+      ).to.be.equal(true);
+      expect(
+        await nft.isApprovedForAll(bob.address, owner.address)
+      ).to.be.equal(false);
     });
 
     it("Can't self approve", async () => {
-      await expect(nft.setApprovalForAll(owner.address, true)).to.be.revertedWith(
-        "ERC1155: setting approval status for self"
-      );
+      await expect(
+        nft.setApprovalForAll(owner.address, true)
+      ).to.be.revertedWith("ERC1155: setting approval status for self");
     });
   });
 
   describe("Transfers", function () {
     it("safeTransfer from emits event", async () => {
-      await expect(nft.safeTransferFrom(owner.address, alice.address, 0, 2, data))
+      await expect(
+        nft.safeTransferFrom(owner.address, alice.address, 0, 2, data)
+      )
         .to.emit(nft, "TransferSingle")
         .withArgs(owner.address, owner.address, alice.address, 0, 2);
     });
 
     it("safeBatchTransfer from emits event", async () => {
       await expect(
-        nft.safeBatchTransferFrom(owner.address, alice.address, [0, 1], [1, 1], data)
+        nft.safeBatchTransferFrom(
+          owner.address,
+          alice.address,
+          [0, 1],
+          [1, 1],
+          data
+        )
       )
         .to.emit(nft, "TransferBatch")
         .withArgs(owner.address, owner.address, alice.address, [0, 1], [1, 1]);
@@ -121,7 +133,13 @@ describe("ERC1155 Token", function () {
         nft.safeTransferFrom(alice.address, owner.address, 0, 2, data)
       ).to.be.revertedWith("ERC1155: caller is not token owner or approved");
       await expect(
-        nft.safeBatchTransferFrom(alice.address, owner.address, [0, 1], [1, 1], data)
+        nft.safeBatchTransferFrom(
+          alice.address,
+          owner.address,
+          [0, 1],
+          [1, 1],
+          data
+        )
       ).to.be.revertedWith("ERC1155: caller is not token owner or approved");
     });
   });
@@ -132,7 +150,10 @@ describe("ERC1155 Token", function () {
     });
 
     it("Can get balanceOfBatch", async () => {
-      const balances = await nft.balanceOfBatch([owner.address, alice.address], mintIds);
+      const balances = await nft.balanceOfBatch(
+        [owner.address, alice.address],
+        mintIds
+      );
       expect(balances[0]).to.be.equal(mintAmounts[0]);
       expect(balances[1]).to.be.equal(mintAmounts[1]);
     });

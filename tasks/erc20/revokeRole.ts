@@ -5,7 +5,10 @@ import { task } from "hardhat/config";
 task("revokeRole", "Revokes role from account")
   .addParam("role", "Available roles: 'minter', 'burner'. Minter by default")
   .addParam("from", "Address to revoke role from")
-  .addOptionalParam("token", "The address of the Token. By default grab it from .env")
+  .addOptionalParam(
+    "token",
+    "The address of the Token. By default grab it from .env"
+  )
   .setAction(async (taskArgs, hre) => {
     const roles = {
       minter: hre.ethers.utils.solidityKeccak256(["string"], ["MINTER_ROLE"]),

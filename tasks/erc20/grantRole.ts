@@ -5,7 +5,10 @@ import { task } from "hardhat/config";
 task("grantRole", "Grants role to account")
   .addParam("role", "Available roles: 'minter', 'burner'. Minter by default")
   .addParam("to", "Address to grant role to")
-  .addOptionalParam("token", "The address of the Token. By default grab it from .env")
+  .addOptionalParam(
+    "token",
+    "The address of the Token. By default grab it from .env"
+  )
   .setAction(async (taskArgs, hre) => {
     const roles = {
       minter: hre.ethers.utils.solidityKeccak256(["string"], ["MINTER_ROLE"]),
