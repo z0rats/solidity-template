@@ -3,7 +3,7 @@ import { ethers } from "hardhat";
 import { BigNumber } from "ethers";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
-import { Token20, Token20__factory } from "../types";
+import { Token20, Token20__factory } from "../typechain-types";
 
 import { roles, snapshot } from "./utils";
 

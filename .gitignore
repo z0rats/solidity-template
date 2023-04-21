@@ -1,16 +1,11 @@
-# Dependency directory
-node_modules
-
-# dotenv environment variables
-.env
-
-#Hardhat files
+# Hardhat files
 cache
 artifacts
 
-# solidity-coverage directory and output file
+
+node_modules
+.env
 coverage
 coverage.json
-
-# TypeScript bindings output directory
-types
+typechain
+typechain-types

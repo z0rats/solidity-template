@@ -5,7 +5,7 @@ import path from "path";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
 import { delay } from "../test/utils";
-import { Token20__factory } from "../types";
+import { Token20__factory } from "../typechain-types";
 
 const network = hre.network.name;
 const envConfig = dotenv.parse(fs.readFileSync(`.env-${network}`));

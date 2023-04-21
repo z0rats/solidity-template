@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
-import { Token721, Token721__factory } from "../types";
+import { Token721, Token721__factory } from "../typechain-types";
 
 import { zeroAddr, snapshot } from "./utils";
 
