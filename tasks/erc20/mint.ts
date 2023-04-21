@@ -5,7 +5,10 @@ import { task } from "hardhat/config";
 task("mint", "Mint tokens on provided account")
   .addParam("amount", "The amount of tokens to mint")
   .addParam("to", "The address to mint on")
-  .addOptionalParam("token", "Token contract address. By default grab it from .env")
+  .addOptionalParam(
+    "token",
+    "Token contract address. By default grab it from .env"
+  )
   .setAction(async (taskArgs, hre) => {
     const network = hre.network.name;
     const envConfig = dotenv.parse(fs.readFileSync(`.env-${network}`));

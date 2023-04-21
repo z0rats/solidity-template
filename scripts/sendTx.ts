@@ -14,10 +14,14 @@ async function main() {
   console.log("Sender address: ", alice.address);
 
   const balance = await alice.getBalance();
-  console.log(`Sender balance: ${hre.ethers.utils.formatEther(balance).toString()}`);
+  console.log(
+    `Sender balance: ${hre.ethers.utils.formatEther(balance).toString()}`
+  );
 
   const gasPrice = await hre.network.provider.send("eth_gasPrice");
-  console.log(`gasPrice: ${hre.ethers.utils.formatEther(gasPrice).toString()} eth`);
+  console.log(
+    `gasPrice: ${hre.ethers.utils.formatEther(gasPrice).toString()} eth`
+  );
 
   const tx = {
     from: alice.address,
@@ -26,7 +30,9 @@ async function main() {
     // gasPrice: custom,
     gasPrice,
     gasLimit: hre.ethers.utils.hexlify(100000), // 100 gwei
-    nonce: await hre.network.provider.send("eth_getTransactionCount", [alice.address]),
+    nonce: await hre.network.provider.send("eth_getTransactionCount", [
+      alice.address,
+    ]),
     // nonce: custom,
   };
 

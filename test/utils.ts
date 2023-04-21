@@ -1,5 +1,4 @@
 import { ethers, network } from "hardhat";
-import { BigNumber } from "ethers";
 
 const ONE = ethers.constants.One;
 const TWO = ethers.constants.Two;
@@ -37,7 +36,8 @@ const snapshot = {
 
 // Returns current block timestamp
 const getCurrentTimestamp = async () =>
-  (await ethers.provider.getBlock(await ethers.provider.getBlockNumber())).timestamp;
+  (await ethers.provider.getBlock(await ethers.provider.getBlockNumber()))
+    .timestamp;
 
 // `evm_increaseTime` receives a number of seconds that will be added to
 // the timestamp of the latest block. `evm_mine` force a block to be mined.
@@ -62,7 +62,9 @@ const bigSqrt = (value: BigNumber) => {
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const mineSingleBlock = async () => {
-  await network.provider.send("hardhat_mine", [ethers.utils.hexValue(1).toString()]);
+  await network.provider.send("hardhat_mine", [
+    ethers.utils.hexValue(1).toString(),
+  ]);
 };
 
 const simulateNextBlockTime = async (baseTime: any, changeBy: number) => {
@@ -82,6 +84,14 @@ const setStorageAt = async (address: string, index: string, value: any) => {
   await ethers.provider.send("evm_mine", []); // Just mines to the next block
 };
 
+const randomSigners = (amount: number) => {
+  const signers = [];
+  for (let i = 0; i < amount; i++) {
+    signers.push(ethers.Wallet.createRandom());
+  }
+  return signers;
+};
+
 export {
   zeroAddr,
   roles,
@@ -94,4 +104,5 @@ export {
   simulateNextBlockTime,
   toBytes32,
   setStorageAt,
+  randomSigners,
 };

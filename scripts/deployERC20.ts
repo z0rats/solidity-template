@@ -18,10 +18,14 @@ async function main() {
   console.log("Sender address: ", owner.address);
 
   const balance = await owner.getBalance();
-  console.log(`Sender balance: ${hre.ethers.utils.formatEther(balance).toString()}`);
+  console.log(
+    `Sender balance: ${hre.ethers.utils.formatEther(balance).toString()}`
+  );
 
   const gasPrice = await hre.network.provider.send("eth_gasPrice");
-  console.log(`gasPrice: ${hre.ethers.utils.formatEther(gasPrice).toString()} eth`);
+  console.log(
+    `gasPrice: ${hre.ethers.utils.formatEther(gasPrice).toString()} eth`
+  );
 
   const token = await new Token20__factory(owner).deploy(
     process.env.TOKEN_NAME_FULL as string,
@@ -45,7 +49,10 @@ async function main() {
   await run("verify:verify", {
     address: token.address,
     contract: "contracts/Token20.sol:Token20",
-    constructorArguments: [process.env.TOKEN_NAME_FULL, process.env.TOKEN_SYMBOL],
+    constructorArguments: [
+      process.env.TOKEN_NAME_FULL,
+      process.env.TOKEN_SYMBOL,
+    ],
   });
 
   // Saving artifacts and address in `/frontend`
