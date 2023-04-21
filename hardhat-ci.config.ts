@@ -1,3 +1,4 @@
+import "@nomicfoundation/hardhat-toolbox";
 import "hardhat-contract-sizer";
 
 import { HardhatUserConfig } from "hardhat/types";
@@ -18,6 +19,10 @@ const config: HardhatUserConfig = {
     disambiguatePaths: false,
     runOnCompile: true,
     strict: false,
+  },
+  gasReporter: {
+    enabled: process.env.REPORT_GAS !== undefined,
+    currency: "USD",
   },
 };
 
