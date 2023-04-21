@@ -22,9 +22,21 @@ module.exports = {
     ],
     "node/no-unpublished-import": ["off"],
     "max-len": [1, { code: 90 }],
-    "node/no-missing-import": ["error", {
-      "tryExtensions": [".ts", ".js", ".json", ".node"]
-    }],
-    "camelcase": "off"
+    "node/no-missing-import": [
+      "error",
+      {
+        tryExtensions: [".ts", ".js", ".json", ".node"],
+      },
+    ],
+    camelcase: "off",
+    "node/no-extraneous-import": ["warn"],
   },
+  overrides: [
+    {
+      files: ["*.test.ts", "*.spec.ts"],
+      rules: {
+        "no-unused-expressions": "off",
+      },
+    },
+  ],
 };
