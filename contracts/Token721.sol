@@ -21,7 +21,10 @@ contract Token721 is ERC721URIStorage, Ownable {
     /// @notice Safely mints `tokenId` and transfers it to `to`.
     /// @param  to       The address to mint to.
     /// @param  tokenURI The URI of the token.
-    function safeMint(address to, string memory tokenURI) external onlyOwner returns (uint256) {
+    function safeMint(
+        address to,
+        string memory tokenURI
+    ) external onlyOwner returns (uint256) {
         tokenIds.increment();
 
         uint256 newItemId = tokenIds.current();

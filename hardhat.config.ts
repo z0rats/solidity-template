@@ -1,13 +1,9 @@
 import "dotenv/config";
+import "hardhat-contract-sizer";
+import "@nomicfoundation/hardhat-toolbox";
+import "@dlsl/hardhat-markup";
 
 import { HardhatUserConfig, NetworkUserConfig } from "hardhat/types";
-import "hardhat-docgen";
-import "hardhat-contract-sizer";
-import "@nomiclabs/hardhat-etherscan";
-import "@nomiclabs/hardhat-waffle";
-import "@typechain/hardhat";
-import "hardhat-gas-reporter";
-import "solidity-coverage";
 
 import "./tasks/index.ts";
 
@@ -40,7 +36,9 @@ if (!alchemyPolygonKey) {
   throw new Error("Please set your ALCHEMY_POLYGON_KEY in a .env file");
 }
 
-function createNetworkConfig(network: keyof typeof chainIds): NetworkUserConfig {
+function createNetworkConfig(
+  network: keyof typeof chainIds
+): NetworkUserConfig {
   let url: string;
   if (network === "mumbai")
     url = `https://polygon-${network}.g.alchemy.com/v2/${alchemyPolygonKey}`;
@@ -71,7 +69,7 @@ const config: HardhatUserConfig = {
   solidity: {
     compilers: [
       {
-        version: "0.8.18",
+        version: "0.8.19",
         settings: {
           optimizer: {
             enabled: true,
@@ -126,10 +124,6 @@ const config: HardhatUserConfig = {
     sources: "./contracts",
     tests: "./test",
   },
-  docgen: {
-    path: "./docs",
-    runOnCompile: true,
-  },
   contractSizer: {
     alphaSort: false,
     disambiguatePaths: false,
@@ -143,13 +137,21 @@ const config: HardhatUserConfig = {
     // token: "ETH",
     // gasPriceApi: "https://api.etherscan.io/api?module=proxy&action=eth_gasPrice",
     token: "MATIC",
-    gasPriceApi: "https://api.polygonscan.com/api?module=proxy&action=eth_gasPrice",
+    gasPriceApi:
+      "https://api.polygonscan.com/api?module=proxy&action=eth_gasPrice",
     // gasPrice: 22,
     coinmarketcap: process.env.CMC_API_KEY,
   },
   typechain: {
     outDir: "types",
     target: "ethers-v5",
+  },
+  markup: {
+    outdir: "./docs",
+    onlyFiles: ["./contracts"],
+    skipFiles: [],
+    noCompile: false,
+    verbose: false,
   },
 };
 

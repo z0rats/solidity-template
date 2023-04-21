@@ -4,7 +4,10 @@ import dotenv from "dotenv";
 
 task("balance", "Prints an account's token balance")
   .addParam("account", "The address to check token balance of")
-  .addOptionalParam("token", "Token contract address. By default grab it from .env")
+  .addOptionalParam(
+    "token",
+    "Token contract address. By default grab it from .env"
+  )
   .setAction(async (taskArgs, hre) => {
     const network = hre.network.name;
     const envConfig = dotenv.parse(fs.readFileSync(`.env-${network}`));
@@ -18,6 +21,9 @@ task("balance", "Prints an account's token balance")
     );
 
     const balance = await token.balanceOf(taskArgs.account);
-    const format = hre.ethers.utils.formatUnits(balance, process.env.TOKEN_DECIMALS);
+    const format = hre.ethers.utils.formatUnits(
+      balance,
+      process.env.TOKEN_DECIMALS
+    );
     console.log(`${taskArgs.account} account balance is ${format} tokens`);
   });
