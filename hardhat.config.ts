@@ -142,10 +142,6 @@ const config: HardhatUserConfig = {
     // gasPrice: 22,
     coinmarketcap: process.env.CMC_API_KEY,
   },
-  typechain: {
-    outDir: "types",
-    target: "ethers-v5",
-  },
   markup: {
     outdir: "./docs",
     onlyFiles: ["./contracts"],
