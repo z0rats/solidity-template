@@ -1,6 +1,6 @@
 import "dotenv/config";
-import "hardhat-contract-sizer";
 import "@nomicfoundation/hardhat-toolbox";
+import "hardhat-contract-sizer";
 import "@dlsl/hardhat-markup";
 
 import { HardhatUserConfig, NetworkUserConfig } from "hardhat/types";
