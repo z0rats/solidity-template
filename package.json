@@ -16,7 +16,7 @@
     "@dlsl/hardhat-markup": "^1.0.0-rc.7",
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
     "@openzeppelin/contracts": "^4.8.3",
-    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
     "@typescript-eslint/parser": "^5.59.6",
     "dotenv": "^16.0.3",
     "eslint": "^8.40.0",
