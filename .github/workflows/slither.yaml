@@ -8,12 +8,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/checkout@v3
+      - name: Generate TypeChain artifacts
+        run: npx hardhat typechain --config hardhat-ci.config.ts
 
       - name: Run Slither
         uses: crytic/slither-action@v0.3.0
         id: slither
         with:
+          ignore-compile: true
           sarif: results.sarif
           fail-on: none
 
