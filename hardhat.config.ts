@@ -22,19 +22,12 @@ const chainIds = {
 
 // Ensure that we have all the environment variables we need.
 const mnemonic: string | undefined = process.env.MNEMONIC;
-if (!mnemonic) {
-  throw new Error("Please set your MNEMONIC in a .env file");
-}
+// if (!mnemonic) {
+//   throw new Error("Please set your MNEMONIC in a .env file");
+// }
 
 const alchemyApiKey: string | undefined = process.env.ALCHEMY_API_KEY;
-if (!alchemyApiKey) {
-  throw new Error("Please set your ALCHEMY_API_KEY in a .env file");
-}
-
 const alchemyPolygonKey: string | undefined = process.env.ALCHEMY_POLYGON_KEY;
-if (!alchemyPolygonKey) {
-  throw new Error("Please set your ALCHEMY_POLYGON_KEY in a .env file");
-}
 
 function createNetworkConfig(
   network: keyof typeof chainIds
