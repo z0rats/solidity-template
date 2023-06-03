@@ -17,7 +17,7 @@ jobs:
         run: npm i
 
       - name: Generate TypeChain artifacts
-        run: npx hardhat typechain --config hardhat-ci.config.ts
+        run: npx hardhat compile
 
       - name: Run Slither
         uses: crytic/slither-action@v0.3.0
