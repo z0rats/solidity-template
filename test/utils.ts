@@ -1,14 +1,12 @@
 import { ethers, network } from "hardhat";
 
-const ONE = ethers.constants.One;
-const TWO = ethers.constants.Two;
-const zeroAddr = ethers.constants.AddressZero;
+const zeroAddr = ethers.ZeroAddress;
 
 // AccessControl roles in bytes32 string
 const roles = {
-  admin: ethers.constants.HashZero, // DEFAULT_ADMIN_ROLE
-  minter: ethers.utils.solidityKeccak256(["string"], ["MINTER_ROLE"]),
-  burner: ethers.utils.solidityKeccak256(["string"], ["BURNER_ROLE"]),
+  admin: ethers.ZeroHash, // DEFAULT_ADMIN_ROLE
+  minter: ethers.solidityPackedKeccak256(["string"], ["MINTER_ROLE"]),
+  burner: ethers.solidityPackedKeccak256(["string"], ["BURNER_ROLE"]),
 };
 
 const interfaceIds = {
@@ -46,37 +44,25 @@ const increaseTime = async (seconds: number) => {
   await network.provider.send("evm_mine");
 };
 
-// Computes square root of BigNumber value type
-const bigSqrt = (value: BigNumber) => {
-  const x = ethers.BigNumber.from(value);
-  let z = x.add(ONE).div(TWO);
-  let y = x;
-  while (z.sub(y).isNegative()) {
-    y = z;
-    z = x.div(z).add(z).div(TWO);
-  }
-  return y;
-};
-
 // Wait `ms` before executing next line
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const mineSingleBlock = async () => {
   await network.provider.send("hardhat_mine", [
-    ethers.utils.hexValue(1).toString(),
+    ethers.toQuantity(1).toString(),
   ]);
 };
 
-const simulateNextBlockTime = async (baseTime: any, changeBy: number) => {
-  const bi = ethers.BigNumber.from(baseTime);
+const simulateNextBlockTime = async (baseTime: any, changeBy: BigInt) => {
+  const bi = BigInt(baseTime);
   await network.provider.send("evm_setNextBlockTimestamp", [
-    ethers.utils.hexlify(bi.add(changeBy)),
+    ethers.toBeHex(bi + changeBy),
   ]);
   await mineSingleBlock();
 };
 
 const toBytes32 = (bn: any) => {
-  return ethers.utils.hexlify(ethers.utils.zeroPad(bn.toHexString(), 32));
+  return ethers.toBeHex(ethers.zeroPadValue(bn.toHexString(), 32));
 };
 
 const setStorageAt = async (address: string, index: string, value: any) => {
@@ -99,7 +85,6 @@ export {
   snapshot,
   getCurrentTimestamp,
   increaseTime,
-  bigSqrt,
   delay,
   simulateNextBlockTime,
   toBytes32,
