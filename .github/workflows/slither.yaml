@@ -8,23 +8,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+      # - name: Use Node.js ${{ matrix.node-version }}
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
-        run: npm i
+      # - name: Install dependencies
+      #   run: npm i
 
-      - name: Compile contracts
-        run: npx hardhat compile --config hardhat-ci.config.ts
+      # - name: Compile contracts
+      #   run: npx hardhat compile --config hardhat-ci.config.ts
 
       - name: Run Slither
         uses: crytic/slither-action@v0.3.0
         id: slither
         with:
           node-version: 18.15
-          ignore-compile: true
+          # ignore-compile: true
           sarif: results.sarif
           fail-on: none
 
