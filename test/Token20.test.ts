@@ -1,6 +1,5 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import { BigNumber } from "ethers";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
 import { Token20, Token20__factory } from "../typechain-types";
@@ -11,8 +10,8 @@ import { roles, snapshot } from "./utils";
 const tokenName = "Token20";
 const symbol = "CRPT";
 const decimals = 18;
-const tenTokens = ethers.utils.parseUnits("10.0", decimals);
-const twentyTokens = ethers.utils.parseUnits("20.0", decimals);
+const tenTokens = ethers.parseUnits("10.0", decimals);
+const twentyTokens = ethers.parseUnits("20.0", decimals);
 
 describe("ERC20 Token", function () {
   // This can be used if tests are too long
@@ -27,12 +26,11 @@ describe("ERC20 Token", function () {
   before(async () => {
     [owner, alice, bob] = await ethers.getSigners();
     token = await new Token20__factory(owner).deploy(tokenName, symbol);
-    await token.deployed();
 
     // Grant roles and mint some tokens
     await token.grantRole(roles.minter, alice.address);
     await token.grantRole(roles.burner, bob.address);
-    const amount = ethers.utils.parseUnits("1000.0", decimals);
+    const amount = ethers.parseUnits("1000.0", decimals);
     await token.connect(alice).mint(owner.address, amount);
     // await token.connect(alice).mint(alice.address, amount);
     await token.connect(alice).mint(bob.address, amount);
@@ -74,7 +72,7 @@ describe("ERC20 Token", function () {
   describe("Transfer", function () {
     it("Should transfer tokens between accounts", async () => {
       // Transfer 20 tokens from owner to Alice
-      const amount: BigNumber = ethers.utils.parseUnits("20.0", decimals);
+      const amount: BigInt = ethers.parseUnits("20.0", decimals);
       await token.transfer(alice.address, amount);
       const aliceBalance = await token.balanceOf(alice.address);
       expect(aliceBalance).to.be.equal(amount);
@@ -93,10 +91,7 @@ describe("ERC20 Token", function () {
 
     it("Can not transfer above the amount", async () => {
       await expect(
-        token.transfer(
-          alice.address,
-          ethers.utils.parseUnits("1000.01", decimals)
-        )
+        token.transfer(alice.address, ethers.parseUnits("1000.01", decimals))
       ).to.be.revertedWith("ERC20: transfer amount exceeds balance");
     });
 
@@ -122,15 +117,13 @@ describe("ERC20 Token", function () {
 
       // Check balances
       const finalOwnerBalance = await token.balanceOf(owner.address);
-      expect(finalOwnerBalance).to.be.equal(
-        initialOwnerBalance.sub(twentyTokens)
-      );
+      expect(finalOwnerBalance).to.be.equal(initialOwnerBalance - twentyTokens);
 
       const aliceBalance = await token.balanceOf(alice.address);
-      expect(aliceBalance).to.be.equal(initialAliceBalance.add(tenTokens));
+      expect(aliceBalance).to.be.equal(initialAliceBalance + tenTokens);
 
       const bobBalance = await token.balanceOf(bob.address);
-      expect(bobBalance).to.be.equal(initialBobBalance.add(tenTokens));
+      expect(bobBalance).to.be.equal(initialBobBalance + tenTokens);
     });
   });
 
@@ -174,10 +167,7 @@ describe("ERC20 Token", function () {
       await token.approve(alice.address, tenTokens);
 
       // Send most of owner tokens to Bob
-      await token.transfer(
-        bob.address,
-        ethers.utils.parseUnits("995.0", decimals)
-      );
+      await token.transfer(bob.address, ethers.parseUnits("995.0", decimals));
 
       // Check that Alice can't transfer all amount (only 5 left)
       await expect(
@@ -203,7 +193,7 @@ describe("ERC20 Token", function () {
       const burnAmount = tenTokens;
       await expect(token.connect(bob).burn(owner.address, burnAmount))
         .to.emit(token, "Transfer")
-        .withArgs(owner.address, ethers.constants.AddressZero, burnAmount);
+        .withArgs(owner.address, ethers.ZeroAddress, burnAmount);
     });
 
     it("Token supply & balance should change after burning", async () => {
@@ -214,10 +204,10 @@ describe("ERC20 Token", function () {
       await token.connect(bob).burn(owner.address, burnAmount);
 
       const currentSupply = await token.totalSupply();
-      expect(currentSupply).to.be.equal(initialSupply.sub(burnAmount));
+      expect(currentSupply).to.be.equal(initialSupply - burnAmount);
 
       const ownerBalance = await token.balanceOf(owner.address);
-      expect(ownerBalance).to.be.equal(initialOwnerBalance.sub(burnAmount));
+      expect(ownerBalance).to.be.equal(initialOwnerBalance - burnAmount);
     });
 
     it("Can not burn above total supply", async () => {
@@ -243,7 +233,7 @@ describe("ERC20 Token", function () {
       const mintAmount = tenTokens;
       await expect(token.connect(alice).mint(owner.address, mintAmount))
         .to.emit(token, "Transfer")
-        .withArgs(ethers.constants.AddressZero, owner.address, mintAmount);
+        .withArgs(ethers.ZeroAddress, owner.address, mintAmount);
     });
 
     it("Token supply & balance should change after minting", async () => {
@@ -254,10 +244,10 @@ describe("ERC20 Token", function () {
       await token.connect(alice).mint(owner.address, mintAmount);
 
       const currentSupply = await token.totalSupply();
-      expect(currentSupply).to.be.equal(initialSupply.add(mintAmount));
+      expect(currentSupply).to.be.equal(initialSupply + mintAmount);
 
       const ownerBalance = await token.balanceOf(owner.address);
-      expect(ownerBalance).to.be.equal(initialOwnerBalance.add(mintAmount));
+      expect(ownerBalance).to.be.equal(initialOwnerBalance + mintAmount);
     });
   });
 });
