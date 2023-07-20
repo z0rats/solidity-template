@@ -30,7 +30,7 @@ const alchemyApiKey: string | undefined = process.env.ALCHEMY_API_KEY;
 const alchemyPolygonKey: string | undefined = process.env.ALCHEMY_POLYGON_KEY;
 
 function createNetworkConfig(
-  network: keyof typeof chainIds
+  network: keyof typeof chainIds,
 ): NetworkUserConfig {
   let url: string;
   if (network === "mumbai")

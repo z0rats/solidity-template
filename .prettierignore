@@ -3,4 +3,7 @@ artifacts
 cache
 coverage
 docs
+scripts
+tasks
+test
 gasReporterOutput.json
