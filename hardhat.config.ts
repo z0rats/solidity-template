@@ -42,15 +42,6 @@ function createNetworkConfig(
       count: 10,
       mnemonic,
     },
-    // accounts: [privateKey1, privateKey2, ...],
-    // Ledger config
-    // accounts: [
-    //   {
-    //     platform: "ledger",
-    //     type: "hid",
-    //     path: "m/44'/60'/0'/0/0"
-    //   }
-    // ],
     chainId: chainIds[network],
     url,
     // gas: 2100000,
