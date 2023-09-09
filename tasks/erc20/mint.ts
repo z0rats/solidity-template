@@ -21,7 +21,7 @@ task("mint", "Mint tokens on provided account")
       taskArgs.token || (process.env.ASSET20_TOKEN_ADDRESS as string)
     );
 
-    const amount = hre.ethers.utils.parseUnits(
+    const amount = hre.ethers.parseUnits(
       taskArgs.amount,
       process.env.TOKEN_DECIMALS
     );

@@ -11,8 +11,8 @@ task("grantRole", "Grants role to account")
   )
   .setAction(async (taskArgs, hre) => {
     const roles = {
-      minter: hre.ethers.utils.solidityKeccak256(["string"], ["MINTER_ROLE"]),
-      burner: hre.ethers.utils.solidityKeccak256(["string"], ["BURNER_ROLE"]),
+      minter: hre.ethers.solidityPackedKeccak256(["string"], ["MINTER_ROLE"]),
+      burner: hre.ethers.solidityPackedKeccak256(["string"], ["BURNER_ROLE"]),
     };
 
     const network = hre.network.name;
