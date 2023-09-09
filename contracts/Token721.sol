@@ -14,13 +14,13 @@ contract Token721 is ERC721URIStorage, Ownable {
     Counters.Counter private tokenIds;
 
     /// @notice Creates a new ERC-721 item collection.
-    /// @param  name   Name of the collection.
-    /// @param  symbol Symbol of the collection.
+    /// @param name   Name of the collection.
+    /// @param symbol Symbol of the collection.
     constructor(string memory name, string memory symbol) ERC721(name, symbol) {}
 
     /// @notice Safely mints `tokenId` and transfers it to `to`.
-    /// @param  to       The address to mint to.
-    /// @param  tokenURI The URI of the token.
+    /// @param to       The address to mint to.
+    /// @param tokenURI The URI of the token.
     function safeMint(
         address to,
         string memory tokenURI
