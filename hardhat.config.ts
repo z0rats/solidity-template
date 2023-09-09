@@ -1,7 +1,7 @@
 import "dotenv/config";
 import "@nomicfoundation/hardhat-toolbox";
 import "hardhat-contract-sizer";
-import "@dlsl/hardhat-markup";
+import "@solarity/hardhat-markup";
 
 import { HardhatUserConfig, NetworkUserConfig } from "hardhat/types";
 
@@ -11,26 +11,23 @@ const chainIds = {
   ganache: 1337,
   hardhat: 31337,
   mainnet: 1,
-  ropsten: 3,
-  rinkeby: 4,
+  sepolia: 11155111,
   goerli: 5,
-  kovan: 42,
   mumbai: 80001,
   matic: 137,
-  bscTestnet: 97,
 };
 
 // Ensure that we have all the environment variables we need.
 const mnemonic: string | undefined = process.env.MNEMONIC;
-// if (!mnemonic) {
-//   throw new Error("Please set your MNEMONIC in a .env file");
-// }
+if (!mnemonic) {
+  throw new Error("Please set your MNEMONIC in a .env file");
+}
 
 const alchemyApiKey: string | undefined = process.env.ALCHEMY_API_KEY;
 const alchemyPolygonKey: string | undefined = process.env.ALCHEMY_POLYGON_KEY;
 
 function createNetworkConfig(
-  network: keyof typeof chainIds,
+  network: keyof typeof chainIds
 ): NetworkUserConfig {
   let url: string;
   if (network === "mumbai")
@@ -74,26 +71,14 @@ const config: HardhatUserConfig = {
       //   blockNumber: 14081268, // pinning a block to enable caching
       // },
     },
+    sepolia: createNetworkConfig("sepolia"),
     mumbai: createNetworkConfig("mumbai"),
-    rinkeby: createNetworkConfig("rinkeby"),
-    kovan: createNetworkConfig("kovan"),
-    bscTestnet: {
-      accounts: {
-        count: 10,
-        mnemonic,
-      },
-      url: "https://data-seed-prebsc-1-s1.binance.org:8545",
-      chainId: chainIds.bscTestnet,
-      // gasPrice: 20000000000,
-    },
   },
   etherscan: {
     apiKey: {
       mainnet: process.env.ETHERSCAN_API_KEY as string,
-      ropsten: process.env.ETHERSCAN_API_KEY as string,
-      rinkeby: process.env.ETHERSCAN_API_KEY as string,
       goerli: process.env.ETHERSCAN_API_KEY as string,
-      kovan: process.env.ETHERSCAN_API_KEY as string,
+      sepolia: process.env.ETHERSCAN_API_KEY as string,
       // binance smart chain
       bsc: process.env.BSCSCAN_API_KEY as string,
       bscTestnet: process.env.BSCSCAN_API_KEY as string,
@@ -123,7 +108,6 @@ const config: HardhatUserConfig = {
     token: "MATIC",
     gasPriceApi:
       "https://api.polygonscan.com/api?module=proxy&action=eth_gasPrice",
-    // gasPrice: 22,
     coinmarketcap: process.env.CMC_API_KEY,
   },
   markup: {
