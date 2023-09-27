@@ -2,9 +2,9 @@ import fs from "fs";
 import dotenv from "dotenv";
 import hre, { artifacts, run } from "hardhat";
 import path from "path";
-import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
+import { HardhatEthersSigner } from "@nomiclabs/hardhat-ethers/signers";
 
-import { delay } from "../test/utils";
+import { delay } from "../tests/utils";
 import { Token20__factory } from "../typechain-types";
 
 const network = hre.network.name;
@@ -14,17 +14,17 @@ for (const parameter in envConfig) {
 }
 
 async function main() {
-  const [owner]: SignerWithAddress[] = await hre.ethers.getSigners();
+  const [owner]: HardhatEthersSigner[] = await hre.ethers.getSigners();
   console.log("Sender address: ", owner.address);
 
   const balance = await owner.getBalance();
   console.log(
-    `Sender balance: ${hre.ethers.utils.formatEther(balance).toString()}`
+    `Sender balance: ${hre.ethers.formatEther(balance).toString()}`
   );
 
   const gasPrice = await hre.network.provider.send("eth_gasPrice");
   console.log(
-    `gasPrice: ${hre.ethers.utils.formatEther(gasPrice).toString()} eth`
+    `gasPrice: ${hre.ethers.formatEther(gasPrice).toString()} eth`
   );
 
   const token = await new Token20__factory(owner).deploy(
@@ -32,13 +32,14 @@ async function main() {
     process.env.TOKEN_SYMBOL as string
   );
 
-  await token.deployed();
-  console.log(`✅ Contract deployed to ${token.address}`);
+  await token.waitForDeployment();
+  const address = await token.getAddress();
+  console.log(`✅ Contract deployed to ${address}`);
 
   // Sync env file
   fs.appendFileSync(
     `.env-${network}`,
-    `\r\# Deployed at \rTOKEN_20_ADDRESS=${token.address}\r`
+    `\r\# Deployed at \rTOKEN_20_ADDRESS=${address}\r`
   );
 
   console.log("Waiting 15 seconds before running verify...");
@@ -47,7 +48,7 @@ async function main() {
   // Verifying contract
   console.log("Verifying...");
   await run("verify:verify", {
-    address: token.address,
+    address,
     contract: "contracts/Token20.sol:Token20",
     constructorArguments: [
       process.env.TOKEN_NAME_FULL,
