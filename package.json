@@ -10,14 +10,14 @@
     "typechain": "hardhat typechain"
   },
   "keywords": [],
-  "author": "v0xat",
+  "author": "z0rats",
   "license": "MIT",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
     "@openzeppelin/contracts": "^4.9.3",
     "@solarity/hardhat-markup": "^1.0.2",
-    "@typescript-eslint/eslint-plugin": "^6.7.2",
-    "@typescript-eslint/parser": "^6.7.2",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
     "dotenv": "^16.3.1",
     "eslint": "^8.50.0",
     "eslint-config-prettier": "^9.0.0",
