@@ -1,9 +1,8 @@
 # Token721
 
-## Contract Description
+## Overview
 
-
-License: MIT
+#### License: MIT
 
 ## 
 
@@ -17,7 +16,11 @@ contract Token721 is ERC721URIStorage, Ownable
 ### constructor
 
 ```solidity
-constructor(string memory name, string memory symbol) ERC721(name, symbol)
+constructor(
+    string memory name,
+    string memory symbol,
+    address initialOwner
+) ERC721(name, symbol) Ownable(initialOwner)
 ```
 
 Creates a new ERC-721 item collection.
@@ -30,13 +33,10 @@ Parameters:
 | name   | string | Name of the collection.   |
 | symbol | string | Symbol of the collection. |
 
-### safeMint (0xd204c45e)
+### safeMint (0xa1448194)
 
 ```solidity
-function safeMint(
-    address to,
-    string memory tokenURI
-) external onlyOwner returns (uint256)
+function safeMint(address to, uint256 tokenId) public onlyOwner
 ```
 
 Safely mints `tokenId` and transfers it to `to`.
@@ -44,7 +44,7 @@ Safely mints `tokenId` and transfers it to `to`.
 
 Parameters:
 
-| Name     | Type    | Description                   |
-| :------- | :------ | :---------------------------- |
-| to       | address | The address to mint to.       |
-| tokenURI | string  | The URI of the token.         |
+| Name    | Type    | Description                   |
+| :------ | :------ | :---------------------------- |
+| to      | address | The address to mint to.       |
+| tokenId | uint256 | The ID of the token.          |

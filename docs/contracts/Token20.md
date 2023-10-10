@@ -1,9 +1,8 @@
 # Token20
 
-## Contract Description
+## Overview
 
-
-License: MIT
+#### License: MIT
 
 ## 
 

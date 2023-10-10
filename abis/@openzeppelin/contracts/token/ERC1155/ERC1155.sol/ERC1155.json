@@ -1,0 +1,21 @@
+[
+  "error ERC1155InsufficientBalance(address,uint256,uint256,uint256)",
+  "error ERC1155InvalidApprover(address)",
+  "error ERC1155InvalidArrayLength(uint256,uint256)",
+  "error ERC1155InvalidOperator(address)",
+  "error ERC1155InvalidReceiver(address)",
+  "error ERC1155InvalidSender(address)",
+  "error ERC1155MissingApprovalForAll(address,address)",
+  "event ApprovalForAll(address indexed,address indexed,bool)",
+  "event TransferBatch(address indexed,address indexed,address indexed,uint256[],uint256[])",
+  "event TransferSingle(address indexed,address indexed,address indexed,uint256,uint256)",
+  "event URI(string,uint256 indexed)",
+  "function balanceOf(address,uint256) view returns (uint256)",
+  "function balanceOfBatch(address[],uint256[]) view returns (uint256[])",
+  "function isApprovedForAll(address,address) view returns (bool)",
+  "function safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)",
+  "function safeTransferFrom(address,address,uint256,uint256,bytes)",
+  "function setApprovalForAll(address,bool)",
+  "function supportsInterface(bytes4) view returns (bool)",
+  "function uri(uint256) view returns (string)"
+]
