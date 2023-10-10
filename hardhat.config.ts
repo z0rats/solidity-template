@@ -19,6 +19,9 @@ const chainIds = {
   matic: 137,
 };
 
+// Turning off the automatic Tenderly verification
+tdly.setup({ automaticVerifications: false });
+
 // Ensure that we have all the environment variables we need.
 const mnemonic: string | undefined = process.env.MNEMONIC;
 if (!mnemonic) {
