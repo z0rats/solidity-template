@@ -61,10 +61,9 @@ describe("ERC20 Token", function () {
     it("Only admin can grant roles", async () => {
       await expect(
         token.connect(alice).grantRole(roles.burner, alice.address)
-      ).to.be.revertedWith(
-        `AccessControl: account ${alice.address.toLowerCase()} is missing role ${
-          roles.admin
-        }`
+      ).to.be.revertedWithCustomError(
+        token,
+        "AccessControlUnauthorizedAccount"
       );
     });
   });
@@ -82,7 +81,7 @@ describe("ERC20 Token", function () {
       // Trying to send 10 tokens from Alice (0 tokens) to owner (1000 tokens)
       await expect(
         token.connect(alice).transfer(owner.address, tenTokens)
-      ).to.be.revertedWith("ERC20: transfer amount exceeds balance");
+      ).to.be.revertedWithCustomError(token, "ERC20InsufficientBalance");
 
       // Owner balance shouldn't have changed
       const ownerBalance = await token.balanceOf(owner.address);
@@ -92,7 +91,7 @@ describe("ERC20 Token", function () {
     it("Can not transfer above the amount", async () => {
       await expect(
         token.transfer(alice.address, ethers.parseUnits("1000.01", decimals))
-      ).to.be.revertedWith("ERC20: transfer amount exceeds balance");
+      ).to.be.revertedWithCustomError(token, "ERC20InsufficientBalance");
     });
 
     it("Transfer should emit event", async () => {
@@ -159,7 +158,7 @@ describe("ERC20 Token", function () {
         token
           .connect(alice)
           .transferFrom(owner.address, alice.address, twentyTokens)
-      ).to.be.revertedWith("ERC20: insufficient allowance");
+      ).to.be.revertedWithCustomError(token, "ERC20InsufficientAllowance");
     });
 
     it("Can not TransferFrom if owner does not have enough tokens", async () => {
@@ -174,7 +173,7 @@ describe("ERC20 Token", function () {
         token
           .connect(alice)
           .transferFrom(owner.address, alice.address, tenTokens)
-      ).to.be.revertedWith("ERC20: transfer amount exceeds balance");
+      ).to.be.revertedWithCustomError(token, "ERC20InsufficientBalance");
     });
   });
 
@@ -182,10 +181,11 @@ describe("ERC20 Token", function () {
   describe("Burning", function () {
     it("Should not be able to burn tokens without BURNER_ROLE", async () => {
       const burnAmount = tenTokens;
-      await expect(token.burn(alice.address, burnAmount)).to.be.revertedWith(
-        `AccessControl: account ${owner.address.toLowerCase()} is missing role ${
-          roles.burner
-        }`
+      await expect(
+        token.burn(alice.address, burnAmount)
+      ).to.be.revertedWithCustomError(
+        token,
+        "AccessControlUnauthorizedAccount"
       );
     });
 
@@ -214,7 +214,7 @@ describe("ERC20 Token", function () {
       const initialSupply = await token.totalSupply();
       await expect(
         token.connect(bob).burn(owner.address, initialSupply)
-      ).to.be.revertedWith("ERC20: burn amount exceeds balance");
+      ).to.be.revertedWithCustomError(token, "ERC20InsufficientBalance");
     });
   });
 
@@ -222,10 +222,11 @@ describe("ERC20 Token", function () {
   describe("Minting", function () {
     it("Should not be able to mint tokens without MINTER_ROLE", async () => {
       const mintAmount = tenTokens;
-      await expect(token.mint(alice.address, mintAmount)).to.be.revertedWith(
-        `AccessControl: account ${owner.address.toLowerCase()} is missing role ${
-          roles.minter
-        }`
+      await expect(
+        token.mint(alice.address, mintAmount)
+      ).to.be.revertedWithCustomError(
+        token,
+        "AccessControlUnauthorizedAccount"
       );
     });
 

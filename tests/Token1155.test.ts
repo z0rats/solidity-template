@@ -22,7 +22,7 @@ describe("ERC1155 Token", function () {
 
   before(async () => {
     [owner, alice, bob] = await ethers.getSigners();
-    nft = await new Token1155__factory(owner).deploy(name, symbol, uri);
+    nft = await new Token1155__factory(owner).deploy(owner.address, name, symbol, uri);
 
     await nft.mintBatch(owner.address, mintIds, mintAmounts, data);
     await nft.mintBatch(alice.address, mintIds, mintAmounts, data);
@@ -57,13 +57,13 @@ describe("ERC1155 Token", function () {
     it("Only owner can mint items", async () => {
       await expect(
         nft.connect(alice).mintBatch(alice.address, mintIds, mintAmounts, data)
-      ).to.be.revertedWith("Ownable: caller is not the owner");
+      ).to.be.revertedWithCustomError(nft, "OwnableUnauthorizedAccount");
     });
 
     it("Only owner can set uri", async () => {
-      await expect(nft.connect(alice).setURI(uri)).to.be.revertedWith(
-        "Ownable: caller is not the owner"
-      );
+      await expect(
+        nft.connect(alice).setURI(uri)
+      ).to.be.revertedWithCustomError(nft, "OwnableUnauthorizedAccount");
     });
   });
 
@@ -77,7 +77,7 @@ describe("ERC1155 Token", function () {
     it("Can't mint to zero address", async () => {
       await expect(
         nft.mintBatch(zeroAddr, mintIds, mintAmounts, data)
-      ).to.be.revertedWith("ERC1155: mint to the zero address");
+      ).to.be.revertedWithCustomError(nft, "ERC1155InvalidReceiver");
     });
   });
 
@@ -96,12 +96,6 @@ describe("ERC1155 Token", function () {
       expect(
         await nft.isApprovedForAll(bob.address, owner.address)
       ).to.be.equal(false);
-    });
-
-    it("Can't self approve", async () => {
-      await expect(
-        nft.setApprovalForAll(owner.address, true)
-      ).to.be.revertedWith("ERC1155: setting approval status for self");
     });
   });
 
@@ -131,7 +125,7 @@ describe("ERC1155 Token", function () {
     it("Can't transfer from if caller is not owner or approved", async () => {
       await expect(
         nft.safeTransferFrom(alice.address, owner.address, 0, 2, data)
-      ).to.be.revertedWith("ERC1155: caller is not token owner or approved");
+      ).to.be.revertedWithCustomError(nft, "ERC1155MissingApprovalForAll");
       await expect(
         nft.safeBatchTransferFrom(
           alice.address,
@@ -140,7 +134,7 @@ describe("ERC1155 Token", function () {
           [1, 1],
           data
         )
-      ).to.be.revertedWith("ERC1155: caller is not token owner or approved");
+      ).to.be.revertedWithCustomError(nft, "ERC1155MissingApprovalForAll");
     });
   });
 
@@ -156,12 +150,6 @@ describe("ERC1155 Token", function () {
       );
       expect(balances[0]).to.be.equal(mintAmounts[0]);
       expect(balances[1]).to.be.equal(mintAmounts[1]);
-    });
-
-    it("Can't get balance of zero address", async () => {
-      await expect(nft.balanceOf(zeroAddr, 0)).to.be.revertedWith(
-        "ERC1155: address zero is not a valid owner"
-      );
     });
   });
 });

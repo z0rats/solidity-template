@@ -12,7 +12,6 @@ const chainIds = {
   hardhat: 31337,
   mainnet: 1,
   sepolia: 11155111,
-  goerli: 5,
   mumbai: 80001,
   matic: 137,
 };
@@ -77,7 +76,6 @@ const config: HardhatUserConfig = {
   etherscan: {
     apiKey: {
       mainnet: process.env.ETHERSCAN_API_KEY as string,
-      goerli: process.env.ETHERSCAN_API_KEY as string,
       sepolia: process.env.ETHERSCAN_API_KEY as string,
       // binance smart chain
       bsc: process.env.BSCSCAN_API_KEY as string,

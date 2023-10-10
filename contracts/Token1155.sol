@@ -15,10 +15,11 @@ contract Token1155 is ERC1155, Ownable {
 
     /// @notice Creates a new ERC-1155 items contract.
     constructor(
+        address initialOwner,
         string memory _name,
         string memory _symbol,
         string memory uri
-    ) ERC1155(uri) {
+    ) ERC1155(uri) Ownable(initialOwner) {
         name = _name;
         symbol = _symbol;
     }

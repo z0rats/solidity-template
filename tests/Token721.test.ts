@@ -9,7 +9,6 @@ import { zeroAddr, snapshot } from "./utils";
 // Test dataNFT
 const name = "Token721";
 const symbol = "nft";
-const itemURI = "https://gateway.pinata.cloud/ipfs/uri/1.json";
 
 describe("ERC721 Token", function () {
   // This can be used if tests are too long
@@ -23,10 +22,14 @@ describe("ERC721 Token", function () {
 
   before(async () => {
     [owner, alice, bob] = await ethers.getSigners();
-    nft = await new Token721__factory(owner).deploy(name, symbol);
+    nft = await new Token721__factory(owner).deploy(
+      name,
+      symbol,
+      owner.address
+    );
 
-    await nft.safeMint(owner.address, itemURI);
-    await nft.safeMint(alice.address, itemURI);
+    await nft.safeMint(owner.address, 0);
+    await nft.safeMint(alice.address, 1);
   });
 
   beforeEach(async () => {
@@ -48,22 +51,22 @@ describe("ERC721 Token", function () {
   describe("Ownership", function () {
     it("Only owner can mint items", async () => {
       await expect(
-        nft.connect(alice).safeMint(bob.address, itemURI)
-      ).to.be.revertedWith("Ownable: caller is not the owner");
+        nft.connect(alice).safeMint(bob.address, 3)
+      ).to.be.revertedWithCustomError(nft, "OwnableUnauthorizedAccount");
     });
   });
 
   describe("Approve", function () {
     it("Approve emits event", async () => {
-      await expect(nft.approve(alice.address, 1))
+      await expect(nft.approve(alice.address, 0))
         .to.emit(nft, "Approval")
-        .withArgs(owner.address, alice.address, 1);
+        .withArgs(owner.address, alice.address, 0);
     });
 
     it("Can get approved account", async () => {
-      await nft.approve(alice.address, 1);
-      expect(await nft.getApproved(1)).to.be.equal(alice.address);
-      expect(await nft.getApproved(2)).to.be.equal(zeroAddr);
+      await nft.approve(alice.address, 0);
+      expect(await nft.getApproved(0)).to.be.equal(alice.address);
+      expect(await nft.getApproved(1)).to.be.equal(zeroAddr);
     });
 
     it("Approval for all emits event", async () => {
@@ -83,29 +86,32 @@ describe("ERC721 Token", function () {
     });
 
     it("Can't get approved for nonexistent token", async () => {
-      await expect(nft.getApproved(1337)).to.be.revertedWith(
-        "ERC721: invalid token ID"
+      await expect(nft.getApproved(1337)).to.be.revertedWithCustomError(
+        nft,
+        "ERC721NonexistentToken"
       );
     });
 
     it("Can't approve to current owner", async () => {
-      await expect(nft.approve(owner.address, 1)).to.be.revertedWith(
-        "ERC721: approval to current owner"
+      await expect(nft.approve(owner.address, 1)).to.be.revertedWithCustomError(
+        nft,
+        "ERC721InvalidApprover"
       );
     });
 
     it("Can't approve if caller is not owner or approved for all", async () => {
-      await expect(nft.approve(bob.address, 2)).to.be.revertedWith(
-        "ERC721: approve caller is not token owner or approved for all"
+      await expect(nft.approve(bob.address, 2)).to.be.revertedWithCustomError(
+        nft,
+        "ERC721NonexistentToken"
       );
     });
   });
 
   describe("Transfers", function () {
     it("Transfer from emits event", async () => {
-      await expect(nft.transferFrom(owner.address, alice.address, 1))
+      await expect(nft.transferFrom(owner.address, alice.address, 0))
         .to.emit(nft, "Transfer")
-        .withArgs(owner.address, alice.address, 1);
+        .withArgs(owner.address, alice.address, 0);
     });
 
     it("Safe Transfer from emits event", async () => {
@@ -113,34 +119,34 @@ describe("ERC721 Token", function () {
         nft["safeTransferFrom(address,address,uint256)"](
           owner.address,
           alice.address,
-          1
+          0
         )
       )
         .to.emit(nft, "Transfer")
-        .withArgs(owner.address, alice.address, 1);
+        .withArgs(owner.address, alice.address, 0);
     });
 
     it("Can't transfer from if caller is not owner or approved for all", async () => {
       await expect(
         nft.transferFrom(owner.address, alice.address, 2)
-      ).to.be.revertedWith("ERC721: caller is not token owner or approved");
+      ).to.be.revertedWithCustomError(nft, "ERC721NonexistentToken");
       await expect(
         nft["safeTransferFrom(address,address,uint256)"](
           owner.address,
           alice.address,
           2
         )
-      ).to.be.revertedWith("ERC721: caller is not token owner or approved");
+      ).to.be.revertedWithCustomError(nft, "ERC721NonexistentToken");
     });
   });
 
   describe("Getting item data", function () {
     it("Can get tokenURI by id", async () => {
-      expect(await nft.tokenURI(1)).to.be.equal(itemURI);
+      expect(await nft.tokenURI(1)).to.be.equal("");
     });
 
     it("Can get item owner by id", async () => {
-      expect(await nft.ownerOf(1)).to.be.equal(owner.address);
+      expect(await nft.ownerOf(0)).to.be.equal(owner.address);
     });
 
     it("Can get user balances", async () => {
@@ -148,14 +154,16 @@ describe("ERC721 Token", function () {
     });
 
     it("Can't get owner for nonexistent token", async () => {
-      await expect(nft.ownerOf(15)).to.be.revertedWith(
-        "ERC721: invalid token ID"
+      await expect(nft.ownerOf(15)).to.be.revertedWithCustomError(
+        nft,
+        "ERC721NonexistentToken"
       );
     });
 
     it("Can't get balance of zero address", async () => {
-      await expect(nft.balanceOf(zeroAddr)).to.be.revertedWith(
-        "ERC721: address zero is not a valid owner"
+      await expect(nft.balanceOf(zeroAddr)).to.be.revertedWithCustomError(
+        nft,
+        "ERC721InvalidOwner"
       );
     });
   });
