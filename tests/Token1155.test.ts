@@ -22,7 +22,12 @@ describe("ERC1155 Token", function () {
 
   before(async () => {
     [owner, alice, bob] = await ethers.getSigners();
-    nft = await new Token1155__factory(owner).deploy(owner.address, name, symbol, uri);
+    nft = await new Token1155__factory(owner).deploy(
+      owner.address,
+      name,
+      symbol,
+      uri
+    );
 
     await nft.mintBatch(owner.address, mintIds, mintAmounts, data);
     await nft.mintBatch(alice.address, mintIds, mintAmounts, data);

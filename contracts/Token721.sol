@@ -10,7 +10,11 @@ contract Token721 is ERC721URIStorage, Ownable {
     /// @notice Creates a new ERC-721 item collection.
     /// @param name   Name of the collection.
     /// @param symbol Symbol of the collection.
-    constructor(string memory name, string memory symbol, address initialOwner) ERC721(name, symbol) Ownable(initialOwner) {}
+    constructor(
+        string memory name,
+        string memory symbol,
+        address initialOwner
+    ) ERC721(name, symbol) Ownable(initialOwner) {}
 
     /// @notice Safely mints `tokenId` and transfers it to `to`.
     /// @param to       The address to mint to.

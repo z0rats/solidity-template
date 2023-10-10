@@ -1,9 +1,8 @@
 # Token1155
 
-## Contract Description
+## Overview
 
-
-License: MIT
+#### License: MIT
 
 ## 
 
@@ -34,10 +33,11 @@ Contract symbol
 
 ```solidity
 constructor(
+    address initialOwner,
     string memory _name,
     string memory _symbol,
     string memory uri
-) ERC1155(uri)
+) ERC1155(uri) Ownable(initialOwner)
 ```
 
 Creates a new ERC-1155 items contract.
