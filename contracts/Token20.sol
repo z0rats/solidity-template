@@ -14,7 +14,7 @@ contract Token20 is ERC20, AccessControl {
     /// @param name   Name of the token.
     /// @param symbol Token symbol.
     constructor(string memory name, string memory symbol) ERC20(name, symbol) {
-        _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
     }
 
     /// @notice Calls burn function to "burn" specified amount of tokens.
