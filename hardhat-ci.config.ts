@@ -5,7 +5,7 @@ import { HardhatUserConfig } from "hardhat/types";
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.21",
+    version: "0.8.22",
   },
   defaultNetwork: "hardhat",
   paths: {

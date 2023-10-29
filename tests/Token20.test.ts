@@ -1,5 +1,6 @@
 import { expect } from "chai";
-import { ethers } from "hardhat";
+import { ethers } from "ethers";
+import { ethers as hardhatEthers } from "hardhat";
 import { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers";
 
 import { Token20, Token20__factory } from "../typechain-types";
@@ -24,7 +25,7 @@ describe("ERC20 Token", function () {
     snapId: string;
 
   before(async () => {
-    [owner, alice, bob] = await ethers.getSigners();
+    [owner, alice, bob] = await hardhatEthers.getSigners();
     token = await new Token20__factory(owner).deploy(tokenName, symbol);
 
     // Grant roles and mint some tokens
