@@ -21,7 +21,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: npm i
+        run: npm i --force
 
       - name: Run prettier
         run: npx prettier --check .
