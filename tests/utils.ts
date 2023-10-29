@@ -1,4 +1,5 @@
-import { ethers, network } from "hardhat";
+import { network } from "hardhat";
+import { ethers } from "ethers";
 
 const zeroAddr = ethers.ZeroAddress;
 

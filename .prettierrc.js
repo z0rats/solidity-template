@@ -7,7 +7,7 @@ module.exports = {
         tabWidth: 4,
         printWidth: 90,
         bracketSpacing: true,
-        compiler: "0.8.21",
+        compiler: "0.8.22",
       },
     },
   ],
