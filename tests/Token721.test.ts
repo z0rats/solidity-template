@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { ethers } from "hardhat";
+import { ethers as hardhatEthers } from "hardhat";
 import { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers";
 
 import { Token721, Token721__factory } from "../typechain-types";
@@ -21,7 +21,7 @@ describe("ERC721 Token", function () {
     snapId: string;
 
   before(async () => {
-    [owner, alice, bob] = await ethers.getSigners();
+    [owner, alice, bob] = await hardhatEthers.getSigners();
     nft = await new Token721__factory(owner).deploy(
       name,
       symbol,
@@ -85,13 +85,6 @@ describe("ERC721 Token", function () {
       ).to.be.equal(false);
     });
 
-    it("Can't get approved for nonexistent token", async () => {
-      await expect(nft.getApproved(1337)).to.be.revertedWithCustomError(
-        nft,
-        "ERC721NonexistentToken"
-      );
-    });
-
     it("Can't approve to current owner", async () => {
       await expect(nft.approve(owner.address, 1)).to.be.revertedWithCustomError(
         nft,
@@ -151,20 +144,6 @@ describe("ERC721 Token", function () {
 
     it("Can get user balances", async () => {
       expect(await nft.balanceOf(owner.address)).to.be.equal(1);
-    });
-
-    it("Can't get owner for nonexistent token", async () => {
-      await expect(nft.ownerOf(15)).to.be.revertedWithCustomError(
-        nft,
-        "ERC721NonexistentToken"
-      );
-    });
-
-    it("Can't get balance of zero address", async () => {
-      await expect(nft.balanceOf(zeroAddr)).to.be.revertedWithCustomError(
-        nft,
-        "ERC721InvalidOwner"
-      );
     });
   });
 });

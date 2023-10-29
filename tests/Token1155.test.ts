@@ -1,5 +1,6 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
+import { ethers as hardhatEthers } from "hardhat";
 import { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers";
 
 import { Token1155, Token1155__factory } from "../typechain-types";
@@ -21,7 +22,7 @@ describe("ERC1155 Token", function () {
     snapId: string;
 
   before(async () => {
-    [owner, alice, bob] = await ethers.getSigners();
+    [owner, alice, bob] = await hardhatEthers.getSigners();
     nft = await new Token1155__factory(owner).deploy(
       owner.address,
       name,

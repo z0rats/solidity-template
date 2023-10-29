@@ -1,5 +1,7 @@
 import "dotenv/config";
 import "@nomicfoundation/hardhat-toolbox";
+import "@nomicfoundation/hardhat-viem";
+import "@nomicfoundation/hardhat-ignition";
 import "hardhat-contract-sizer";
 import "@solarity/hardhat-markup";
 import "xdeployer";
@@ -57,7 +59,7 @@ const config: HardhatUserConfig = {
       {
         // Only use Solidity versions `>=0.8.20` for networks that support opcode `PUSH0`
         // Otherwise, use the versions `<=0.8.19`
-        version: "0.8.21",
+        version: "0.8.22",
         settings: {
           optimizer: {
             enabled: true,
