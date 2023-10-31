@@ -207,8 +207,7 @@ const config: HardhatUserConfig = {
     strict: false,
   },
   gasReporter: {
-    // enabled by default
-    // enabled: process.env.GAS ? true : false,
+    enabled: !!process.env.GAS,
     currency: "USD",
     // token: "ETH",
     // gasPriceApi: "https://api.etherscan.io/api?module=proxy&action=eth_gasPrice",
