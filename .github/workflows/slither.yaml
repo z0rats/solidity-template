@@ -5,6 +5,17 @@ on: [push, pull_request]
 jobs:
   analyze:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        contract:
+          - contracts/Counter.sol
+          - contracts/Token20.sol
+          - contracts/Token721.sol
+          - contracts/Token1155.sol
     steps:
       - uses: actions/checkout@v6
 
@@ -24,14 +35,11 @@ jobs:
         uses: crytic/slither-action@v0.4.2
         id: slither
         with:
-          target: contracts/Counter.sol
+          target: ${{ matrix.contract }}
           solc-version: "0.8.33"
           sarif: results.sarif
           fail-on: none
           slither-args: >-
-            contracts/Token20.sol
-            contracts/Token721.sol
-            contracts/Token1155.sol
             --compile-force-framework solc
             --solc-remaps @openzeppelin=node_modules/@openzeppelin
             --filter-paths "contracts/tests"
