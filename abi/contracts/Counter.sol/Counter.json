@@ -1,0 +1,6 @@
+[
+  "event Increment(uint256)",
+  "function inc()",
+  "function incBy(uint256)",
+  "function x() view returns (uint256)"
+]

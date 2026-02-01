@@ -1,29 +1,13 @@
-import "@nomicfoundation/hardhat-toolbox";
-import "hardhat-contract-sizer";
+import hardhatToolboxViemPlugin from "@nomicfoundation/hardhat-toolbox-viem";
+import { defineConfig } from "hardhat/config";
 
-import { HardhatUserConfig } from "hardhat/types";
-
-const config: HardhatUserConfig = {
+export default defineConfig({
+  plugins: [hardhatToolboxViemPlugin],
   solidity: {
-    version: "0.8.22",
+    profiles: {
+      default: {
+        version: "0.8.33",
+      },
+    },
   },
-  defaultNetwork: "hardhat",
-  paths: {
-    artifacts: "./artifacts",
-    cache: "./cache",
-    sources: "./contracts",
-    tests: "./tests",
-  },
-  contractSizer: {
-    alphaSort: false,
-    disambiguatePaths: false,
-    runOnCompile: true,
-    strict: false,
-  },
-  gasReporter: {
-    enabled: !!process.env.REPORT_GAS,
-    currency: "USD",
-  },
-};
-
-export default config;
+});

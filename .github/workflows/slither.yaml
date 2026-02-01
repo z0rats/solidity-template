@@ -6,29 +6,33 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          version: 10
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: npm i --force
+        run: pnpm install --frozen-lockfile
 
       - name: Compile contracts
-        run: npx hardhat compile --config hardhat-ci.config.ts
+        run: pnpm exec hardhat compile --config hardhat-ci.config.ts
 
       - name: Run Slither
-        uses: crytic/slither-action@v0.3.0
+        uses: crytic/slither-action@v0.4.2
         id: slither
         with:
-          node-version: 18.15
+          node-version: "24.12"
           ignore-compile: true
           sarif: results.sarif
           fail-on: none
 
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: ${{ steps.slither.outputs.sarif }}

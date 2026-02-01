@@ -1,11 +1,16 @@
-import { task } from "hardhat/config";
+import type { HardhatRuntimeEnvironment } from "hardhat/types/hre";
 
-// This is a sample Hardhat task. To learn how to create your own go to
-// https://hardhat.org/guides/create-task.html
-task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners();
+interface AccountsTaskArguments {
+  // No arguments
+}
 
-  for (const account of accounts) {
-    console.log(account.address);
-  }
-});
+export default async function (
+  _taskArgs: AccountsTaskArguments,
+  hre: HardhatRuntimeEnvironment,
+): Promise<void> {
+  const connection = await hre.network.connect();
+  const { viem } = connection as unknown as { viem: { getWalletClients: () => Promise<Array<{ account: { address: string } }>> } };
+  const walletClients = await viem.getWalletClients();
+  const addresses = walletClients.map((wc) => wc.account.address);
+  console.log("Accounts:", addresses);
+}
