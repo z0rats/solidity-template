@@ -23,5 +23,8 @@
 # Environment variables
 .env
 
+# Solhint cache
+.solhintcache.json
+
 # VS Code
 .vscode/

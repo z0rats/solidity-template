@@ -1,8 +1,7 @@
 import type { HardhatRuntimeEnvironment } from "hardhat/types/hre";
 
-interface AccountsTaskArguments {
-  // No arguments
-}
+/** Task takes no arguments. */
+type AccountsTaskArguments = Record<string, never>;
 
 export default async function (
   _taskArgs: AccountsTaskArguments,
