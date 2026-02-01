@@ -42,7 +42,7 @@ jobs:
           slither-args: >-
             --compile-force-framework solc
             --solc-remaps @openzeppelin=node_modules/@openzeppelin
-            --filter-paths "contracts/tests"
+            --filter-paths "contracts/tests|node_modules"
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3
