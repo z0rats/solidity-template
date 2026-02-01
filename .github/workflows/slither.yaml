@@ -24,10 +24,14 @@ jobs:
         uses: crytic/slither-action@v0.4.2
         id: slither
         with:
+          target: contracts/Counter.sol
           solc-version: "0.8.33"
           sarif: results.sarif
           fail-on: none
           slither-args: >-
+            contracts/Token20.sol
+            contracts/Token721.sol
+            contracts/Token1155.sol
             --compile-force-framework solc
             --solc-remaps @openzeppelin=node_modules/@openzeppelin
             --filter-paths "contracts/tests"
