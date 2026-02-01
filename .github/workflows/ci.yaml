@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Lint
+      - name: Lint (JS + Solidity)
         run: pnpm lint
 
   test:
