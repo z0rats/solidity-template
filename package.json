@@ -15,7 +15,7 @@
     "@nomicfoundation/hardhat-toolbox-viem": "^5.0.2",
     "@openzeppelin/contracts": "^5.6.1",
     "@solarity/hardhat-markup": "^2.0.0",
-    "@solidstate/hardhat-abi-exporter": "^3.0.1",
+    "@solidstate/hardhat-abi-exporter": "^3.0.4",
     "@types/node": "^22.19.7",
     "eslint": "^9.39.2",
     "forge-std": "github:foundry-rs/forge-std#v1.9.4",
