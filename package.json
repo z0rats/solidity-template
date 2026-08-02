@@ -17,7 +17,7 @@
     "@solarity/hardhat-markup": "^2.0.0",
     "@solidstate/hardhat-abi-exporter": "^3.0.4",
     "@types/node": "^22.19.7",
-    "eslint": "^9.39.2",
+    "eslint": "^10.8.0",
     "forge-std": "github:foundry-rs/forge-std#v1.9.4",
     "hardhat": "^3.11.1",
     "typescript": "~5.9.3",
