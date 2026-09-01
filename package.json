@@ -22,7 +22,7 @@
     "hardhat": "^3.11.1",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.68.0",
-    "viem": "^2.55.10",
+    "viem": "^2.55.19",
     "solhint": "^6.2.4"
   }
 }
