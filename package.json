@@ -19,7 +19,7 @@
     "@types/node": "^26.3.0",
     "eslint": "^10.9.1",
     "forge-std": "github:foundry-rs/forge-std#v1.9.4",
-    "hardhat": "^3.11.1",
+    "hardhat": "^3.17.0",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.68.0",
     "viem": "^2.55.19",
