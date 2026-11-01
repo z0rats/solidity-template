@@ -18,7 +18,7 @@
     "@solidstate/hardhat-abi-exporter": "^3.0.4",
     "@types/node": "^26.6.4",
     "eslint": "^10.9.1",
-    "forge-std": "github:foundry-rs/forge-std#v1.16.2",
+    "forge-std": "github:foundry-rs/forge-std#v1.17.0",
     "hardhat": "^3.18.1",
     "solhint": "^6.2.4",
     "typescript": "~6.0.3",
