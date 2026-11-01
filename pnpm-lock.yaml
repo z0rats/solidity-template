@@ -13,25 +13,25 @@ importers:
         version: 9.39.5
       '@nomicfoundation/hardhat-ignition':
         specifier: ^3.1.8
-        version: 3.1.8(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1))(hardhat@3.18.1)
+        version: 3.1.8(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1)(supports-color@7.2.0))(hardhat@3.18.1)
       '@nomicfoundation/hardhat-toolbox-viem':
         specifier: ^5.0.7
-        version: 5.0.7(3b26828f39cfffa88ce6daef0e41e4d6)
+        version: 5.0.7(9230b3ed6eb062c2233b5006aea5fcad)
       '@openzeppelin/contracts':
         specifier: ^5.6.1
         version: 5.6.1
       '@solarity/hardhat-markup':
         specifier: ^2.0.0
-        version: 2.0.0(hardhat@3.18.1)
+        version: 2.0.0(hardhat@3.18.1)(supports-color@7.2.0)
       '@solidstate/hardhat-abi-exporter':
         specifier: ^3.0.4
-        version: 3.0.4(@nomicfoundation/hardhat-utils@4.4.0)(hardhat@3.18.1)
+        version: 3.0.4(@nomicfoundation/hardhat-utils@4.4.0)(debug@4.4.3(supports-color@7.2.0))(hardhat@3.18.1)(supports-color@7.2.0)
       '@types/node':
         specifier: ^26.6.4
         version: 26.6.4
       eslint:
         specifier: ^10.9.1
-        version: 10.9.1
+        version: 10.9.1(supports-color@7.2.0)
       forge-std:
         specifier: github:foundry-rs/forge-std#v1.16.2
         version: https://codeload.github.com/foundry-rs/forge-std/tar.gz/bf647bd6046f2f7da30d0c2bf435e5c76a780c1b
@@ -45,8 +45,8 @@ importers:
         specifier: ~6.0.3
         version: 6.0.3
       typescript-eslint:
-        specifier: ^8.71.0
-        version: 8.71.0(eslint@10.9.1)(typescript@6.0.3)
+        specifier: ^8.72.0
+        version: 8.72.0(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
       viem:
         specifier: ^2.55.19
         version: 2.55.19(typescript@6.0.3)(zod@3.25.76)
@@ -471,9 +471,6 @@ packages:
     resolution: {integrity: sha512-m/RS577AIDg1TMOwGmH8edeiwa6UE1RQnzniUHQJXVHOu40tMexmLNIqaaI0KL0EgoJtYS3/4kz3gzaRGKExyw==}
     engines: {node: '>= 22'}
 
-  '@nomicfoundation/hardhat-errors@3.0.17':
-    resolution: {integrity: sha512-x8/Bv7Mn0a90ZRX4ZfWuq8uGuqF10LzLMXD1LD0kEIRBwSvr71fcxYyONcuf+MzznbrJ+WBTNz3ov9Rd++8DfQ==}
-
   '@nomicfoundation/hardhat-errors@3.0.21':
     resolution: {integrity: sha512-jXgqgxmI1D7vYcWRQnb6HsRDssxE87a4xJ48FQAdkZUPclB0aVISx6IoVG1Kttx2jJ7tNuo9GasJxpOv7stqyg==}
 
@@ -535,14 +532,14 @@ packages:
   '@nomicfoundation/hardhat-utils@3.0.6':
     resolution: {integrity: sha512-AD/LPNdjXNFRrZcaAAewgJpdnHpPppZxo5p+x6wGMm5Hz4B3+oLf/LUzVn8qb4DDy9RE2c24l2F8vmL/w6ZuXg==}
 
-  '@nomicfoundation/hardhat-utils@4.1.6':
-    resolution: {integrity: sha512-j3LUq/4puVWUaS5BsbehR90LiGZaABYAWHSA4nGfRUxfBUjay82AwSSzaGKfDQYaRkdKoP9ZXeMDTEIFJGI24Q==}
-
   '@nomicfoundation/hardhat-utils@4.1.9':
     resolution: {integrity: sha512-vUyHQ2H1VfknTUxO3Vat7z0y9WkDUF69pLrrLZN2K1/+TKJN+TVzEMeXW/2GXJzIhm2uc2qZXOYwQUh+SU9PbQ==}
 
   '@nomicfoundation/hardhat-utils@4.4.0':
     resolution: {integrity: sha512-fRaVVbPs+Az7K3B40x8jlPDM4o7jfgoTMpxNXjg2JrpxORKqQtf9YSv9HN9lZKFZecLIYwHT3U9RQEOrZBkAEQ==}
+
+  '@nomicfoundation/hardhat-utils@5.1.0':
+    resolution: {integrity: sha512-ZZXEuZZTtpV6A+GKDuuebX8qsyoIaBBrdpuP3gKh69yzel1RN2z8m5B3+veSDqxFfCvSxrbivHXgGuiTxeC8Og==}
 
   '@nomicfoundation/hardhat-vendored@3.0.4':
     resolution: {integrity: sha512-RO8Otj1FvRvxJmXzkxh1vTwK/+cqSVPYLqY6RrWkmzHEEcxnAwAFsBYdW7xyTEyW/pVbSSNd2gs3aoGdGZaoNA==}
@@ -559,11 +556,11 @@ packages:
       hardhat: ^3.0.0
       viem: ^2.43.0
 
-  '@nomicfoundation/hardhat-viem@3.0.2':
-    resolution: {integrity: sha512-u/2IcKhfpD0toaC/P2Zqu+tMT7lDcs3mgp/RIQk8C+IAG0L3YMaCAjLKGWtMNhJQ/oqCM4rNBfdSe2ltvNCyXQ==}
+  '@nomicfoundation/hardhat-viem@3.1.0':
+    resolution: {integrity: sha512-y82uv7MBZe0cPzKsbYs1nIuwjgIN85qPhLgPOnChwhq4jxJ8i0mbWrx61sHd/ghfsuFMlKfncwt+jbw28tmBqg==}
     peerDependencies:
-      hardhat: ^3.0.0
-      viem: ^2.43.0
+      hardhat: ^3.8.0
+      viem: ^2.47.6
 
   '@nomicfoundation/hardhat-zod-utils@3.0.0':
     resolution: {integrity: sha512-xAi+45+V82pZZ9QGDEiii0wp+SXXH/8hS7/pk7S0gOG6h29gPuE42yek8wh3Ff0M+DrsB/RKZjcezmdwH5a6mQ==}
@@ -717,63 +714,63 @@ packages:
   '@types/node@26.6.4':
     resolution: {integrity: sha512-ldVPDCzj7fsaGZrLB0NuHuTvJcsNasysBAqMolr/cgxrLd1xbqxIr3XJiPnHHJUCxj5sNF1vnRj9aWnrVh5Jcg==}
 
-  '@typescript-eslint/eslint-plugin@8.71.0':
-    resolution: {integrity: sha512-pqcS9c1HxZTHt7End4nXqd0s5lJrrFzrgCkKFJrsbUnaL6M3+6oBFZaslg6Gjsl3argl2DDRFROnXARaZ2e4Nw==}
+  '@typescript-eslint/eslint-plugin@8.72.0':
+    resolution: {integrity: sha512-aysKgysPX9XOv/dk95UkvUDe++Q3n3dJPG9CEWT3RUccxfkPJ+Qn6nhKPDhZXU6Ofo9kgwGWwKyQCnZIXTgngg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
-      '@typescript-eslint/parser': ^8.71.0
+      '@typescript-eslint/parser': ^8.72.0
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: '>=4.8.4 <6.1.0'
 
-  '@typescript-eslint/parser@8.71.0':
-    resolution: {integrity: sha512-CG4nPk1f2zc8yw4pALqHsFYH2hdo+h1T9daSp21+Hnxi9LOE3GT9hAfTKJCBXVNM2GmYs1eMEP615wPoeOgk3A==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
-      typescript: '>=4.8.4 <6.1.0'
-
-  '@typescript-eslint/project-service@8.71.0':
-    resolution: {integrity: sha512-aABjw5rjBacYONVPaPiWOCjJu0vEF4a25iQuodlmQYL1trtLZ0X/y+2Vzl3BKI1odM4LnwLE1oUDXYp1wzx1TQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      typescript: '>=4.8.4 <6.1.0'
-
-  '@typescript-eslint/scope-manager@8.71.0':
-    resolution: {integrity: sha512-gWF0BhUcnjZxSpLE8ngS/59n2SB0J3YqRxvX1+2aoRJk9hNtHSLOV+TcarFiOr5ipXm3yc1QrI4c9YZc8zyCxw==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@typescript-eslint/tsconfig-utils@8.71.0':
-    resolution: {integrity: sha512-Z1UlWHADEK2Mlb9NpWfDeSjqoZ5EyrOv4R3eQpbkzqn/EwaIdOpXXupEA1+0ZIOSJSZZDBHG0BrQyN8zUG6Pwg==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      typescript: '>=4.8.4 <6.1.0'
-
-  '@typescript-eslint/type-utils@8.71.0':
-    resolution: {integrity: sha512-i8uO1qbdxeKgRnS5sCRt6On3/nfo2d2DwQe3Yvjx543zLy7r8ySqRuPPiIIXAhS03U0v5NfAFx+rUgxFzKKwNw==}
+  '@typescript-eslint/parser@8.72.0':
+    resolution: {integrity: sha512-0O+x3ynciD6zuXb1CKSu165haQV6ey53DKhHHUnujP7U+XlltJG+/keT0Xhd1HXCze+IHf7Tvt39ovyepX/LNw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: '>=4.8.4 <6.1.0'
 
-  '@typescript-eslint/types@8.71.0':
-    resolution: {integrity: sha512-cJ4OoxPGWvFnBTnSZyaU+qJzGTqPTGJY+gDchj6cRyLRdmIdt4rcsE4twj+zPfrNiWuVi38wijHzShL++Z9atQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@typescript-eslint/typescript-estree@8.71.0':
-    resolution: {integrity: sha512-PEEF4G5sLLWAS5BpPrUvms4ySZkiBQQZM4z+3ReI46axK5Vqr/vXBQatJQIZZOYdGyPUAKTtsrWzpqKuU+3DEw==}
+  '@typescript-eslint/project-service@8.72.0':
+    resolution: {integrity: sha512-bzHngBbmIgzj6TsTjVUCntGx6FFLgE7mPjpO0PzHycOaZHXqS43XnrkFIHRS16LLr/xO6FHSXG3GJFo/F4bSBQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       typescript: '>=4.8.4 <6.1.0'
 
-  '@typescript-eslint/utils@8.71.0':
-    resolution: {integrity: sha512-pKR/tEMVrXZG23UFKUn5BQf3zfmfk7KQceI2cGzywZ5nxM5Eu3hEJU1utjWzydtzBbcJAQhHN8iPCxobHpPcZQ==}
+  '@typescript-eslint/scope-manager@8.72.0':
+    resolution: {integrity: sha512-JewPyJOYcXBSAS7PIgufscHOwZqhTGyBRiQJhhuDln66tMchxvvt7nJ90JKKIoOelmdHA3kAQbm9cEUHc4JSEA==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@typescript-eslint/tsconfig-utils@8.72.0':
+    resolution: {integrity: sha512-0vbxCf7xLVPSjcOdm6eQbgViH8EDJ8xnl1laLT9yoqSz2YmcSfSg5Vdl0JUvZf6rcuJ0ZivJIuMD4edTg8obaA==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      typescript: '>=4.8.4 <6.1.0'
+
+  '@typescript-eslint/type-utils@8.72.0':
+    resolution: {integrity: sha512-gEXxmmbSTSOVTC37IYYvremOM31v+UN2W772bJxmVYPhAOPSUxtacyb7wkm1EhkYKU6KzFJsdU44DCV4to0LWw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: '>=4.8.4 <6.1.0'
 
-  '@typescript-eslint/visitor-keys@8.71.0':
-    resolution: {integrity: sha512-8eQ9R218XORK+KLosnf4bu/QsUXvUyVwTbArg7/0NMB1Pu87OJKvj4nhFblkYE8gQV73mW1dx1ptlPCkwRGa7A==}
+  '@typescript-eslint/types@8.72.0':
+    resolution: {integrity: sha512-Adfoy59kxNEjT5E5fnyrp7GpHYuWs8ONbdohu4ez6IU46qDq8LltG90tLmkucZB2uhYL8mqBjtXqGd8yhfjXqQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@typescript-eslint/typescript-estree@8.72.0':
+    resolution: {integrity: sha512-gwLfFgWcw15tN2KXDCJvxEOQjPn+P3j/n3eSqkZ5sX4VpW9Cosodr+tWwBZRvJT3TcKx6HnPRGZMCNAiP1Xhug==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      typescript: '>=4.8.4 <6.1.0'
+
+  '@typescript-eslint/utils@8.72.0':
+    resolution: {integrity: sha512-0up3oArJZBYnzOaEXKo8DmI43QvMZyPoFEt9LWzRJcyl/RcJjfKKPebknN1VbTgXBf3M/KggUh5uUMdURLnseg==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
+      typescript: '>=4.8.4 <6.1.0'
+
+  '@typescript-eslint/visitor-keys@8.72.0':
+    resolution: {integrity: sha512-E2mroviasaWecDzTGiGMtuEguuLVOeRggnrIn93CJuxYJzQBHbyymlT08aVQydbBal5538o+JkBKXh2sRuCyIA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   abitype@1.2.3:
@@ -1146,7 +1143,7 @@ packages:
         optional: true
 
   forge-std@https://codeload.github.com/foundry-rs/forge-std/tar.gz/bf647bd6046f2f7da30d0c2bf435e5c76a780c1b:
-    resolution: {tarball: https://codeload.github.com/foundry-rs/forge-std/tar.gz/bf647bd6046f2f7da30d0c2bf435e5c76a780c1b}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/foundry-rs/forge-std/tar.gz/bf647bd6046f2f7da30d0c2bf435e5c76a780c1b}
     version: 1.16.2
 
   form-data-encoder@2.1.4:
@@ -1693,8 +1690,8 @@ packages:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
 
-  typescript-eslint@8.71.0:
-    resolution: {integrity: sha512-fBdHYiqQ14RW6mOMXD14Svn82ZsCYAoQSzGRzyEjR59S5A2Krh/l7fGTOQ7iCr8gGy/mHVXtEF7s5fgjEdV0Pw==}
+  typescript-eslint@8.72.0:
+    resolution: {integrity: sha512-r26Fkc8As+mZvqp7SLsMmNFyYUup/6CjK7/eHBHmhOw6GH6n6YFxHVFrG0jN1c5CMpDzelLPxvgeCOzx7BjN+A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
@@ -1902,17 +1899,17 @@ snapshots:
   '@esbuild/win32-x64@0.28.1':
     optional: true
 
-  '@eslint-community/eslint-utils@4.10.1(eslint@10.9.1)':
+  '@eslint-community/eslint-utils@4.10.1(eslint@10.9.1(supports-color@7.2.0))':
     dependencies:
-      eslint: 10.9.1
+      eslint: 10.9.1(supports-color@7.2.0)
       eslint-visitor-keys: 3.4.3
 
   '@eslint-community/regexpp@4.12.2': {}
 
-  '@eslint/config-array@0.23.5':
+  '@eslint/config-array@0.23.5(supports-color@7.2.0)':
     dependencies:
       '@eslint/object-schema': 3.0.5
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@7.2.0)
       minimatch: 10.2.6
     transitivePeerDependencies:
       - supports-color
@@ -2154,10 +2151,6 @@ snapshots:
       '@nomicfoundation/edr-linux-x64-musl': 0.22.0
       '@nomicfoundation/edr-win32-x64-msvc': 0.22.0
 
-  '@nomicfoundation/hardhat-errors@3.0.17':
-    dependencies:
-      '@nomicfoundation/hardhat-utils': 4.1.6
-
   '@nomicfoundation/hardhat-errors@3.0.21':
     dependencies:
       '@nomicfoundation/hardhat-utils': 4.1.9
@@ -2166,21 +2159,21 @@ snapshots:
     dependencies:
       '@nomicfoundation/hardhat-utils': 4.4.0
 
-  '@nomicfoundation/hardhat-ignition-viem@3.0.7(@nomicfoundation/hardhat-ignition@3.1.8(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1))(hardhat@3.18.1))(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1))(@nomicfoundation/hardhat-viem@3.0.2(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76)))(@nomicfoundation/ignition-core@3.1.9)(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))':
+  '@nomicfoundation/hardhat-ignition-viem@3.0.7(@nomicfoundation/hardhat-ignition@3.1.8(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1)(supports-color@7.2.0))(hardhat@3.18.1))(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1)(supports-color@7.2.0))(@nomicfoundation/hardhat-viem@3.1.0(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76)))(@nomicfoundation/ignition-core@3.1.9)(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))':
     dependencies:
       '@nomicfoundation/hardhat-errors': 3.1.1
-      '@nomicfoundation/hardhat-ignition': 3.1.8(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1))(hardhat@3.18.1)
-      '@nomicfoundation/hardhat-verify': 3.0.8(hardhat@3.18.1)
-      '@nomicfoundation/hardhat-viem': 3.0.2(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))
+      '@nomicfoundation/hardhat-ignition': 3.1.8(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1)(supports-color@7.2.0))(hardhat@3.18.1)
+      '@nomicfoundation/hardhat-verify': 3.0.8(hardhat@3.18.1)(supports-color@7.2.0)
+      '@nomicfoundation/hardhat-viem': 3.1.0(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))
       '@nomicfoundation/ignition-core': 3.1.9
       hardhat: 3.18.1
       viem: 2.55.19(typescript@6.0.3)(zod@3.25.76)
 
-  '@nomicfoundation/hardhat-ignition@3.1.8(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1))(hardhat@3.18.1)':
+  '@nomicfoundation/hardhat-ignition@3.1.8(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1)(supports-color@7.2.0))(hardhat@3.18.1)':
     dependencies:
       '@nomicfoundation/hardhat-errors': 3.0.21
       '@nomicfoundation/hardhat-utils': 4.1.9
-      '@nomicfoundation/hardhat-verify': 3.0.8(hardhat@3.18.1)
+      '@nomicfoundation/hardhat-verify': 3.0.8(hardhat@3.18.1)(supports-color@7.2.0)
       '@nomicfoundation/ignition-core': 3.1.9
       '@nomicfoundation/ignition-ui': 3.1.2
       hardhat: 3.18.1
@@ -2190,24 +2183,24 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@nomicfoundation/hardhat-keystore@3.0.3(hardhat@3.18.1)':
+  '@nomicfoundation/hardhat-keystore@3.0.3(hardhat@3.18.1)(supports-color@7.2.0)':
     dependencies:
       '@noble/ciphers': 1.2.1
       '@noble/hashes': 1.7.1
       '@nomicfoundation/hardhat-errors': 3.1.1
-      '@nomicfoundation/hardhat-utils': 3.0.6
+      '@nomicfoundation/hardhat-utils': 3.0.6(supports-color@7.2.0)
       '@nomicfoundation/hardhat-zod-utils': 3.0.5(zod@3.25.76)
       chalk: 5.6.2
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@7.2.0)
       hardhat: 3.18.1
       zod: 3.25.76
     transitivePeerDependencies:
       - supports-color
 
-  '@nomicfoundation/hardhat-network-helpers@3.0.3(hardhat@3.18.1)':
+  '@nomicfoundation/hardhat-network-helpers@3.0.3(hardhat@3.18.1)(supports-color@7.2.0)':
     dependencies:
       '@nomicfoundation/hardhat-errors': 3.1.1
-      '@nomicfoundation/hardhat-utils': 3.0.6
+      '@nomicfoundation/hardhat-utils': 3.0.6(supports-color@7.2.0)
       hardhat: 3.18.1
     transitivePeerDependencies:
       - supports-color
@@ -2217,11 +2210,11 @@ snapshots:
       '@actions/core': 3.0.1
       jest-diff: 30.4.1
 
-  '@nomicfoundation/hardhat-node-test-runner@3.0.8(hardhat@3.18.1)':
+  '@nomicfoundation/hardhat-node-test-runner@3.0.8(hardhat@3.18.1)(supports-color@7.2.0)':
     dependencies:
       '@nomicfoundation/hardhat-errors': 3.1.1
       '@nomicfoundation/hardhat-node-test-reporter': 3.1.1
-      '@nomicfoundation/hardhat-utils': 3.0.6
+      '@nomicfoundation/hardhat-utils': 3.0.6(supports-color@7.2.0)
       '@nomicfoundation/hardhat-zod-utils': 3.0.5(zod@3.25.76)
       hardhat: 3.18.1
       tsx: 4.23.1
@@ -2229,24 +2222,24 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nomicfoundation/hardhat-toolbox-viem@5.0.7(3b26828f39cfffa88ce6daef0e41e4d6)':
+  '@nomicfoundation/hardhat-toolbox-viem@5.0.7(9230b3ed6eb062c2233b5006aea5fcad)':
     dependencies:
-      '@nomicfoundation/hardhat-ignition': 3.1.8(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1))(hardhat@3.18.1)
-      '@nomicfoundation/hardhat-ignition-viem': 3.0.7(@nomicfoundation/hardhat-ignition@3.1.8(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1))(hardhat@3.18.1))(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1))(@nomicfoundation/hardhat-viem@3.0.2(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76)))(@nomicfoundation/ignition-core@3.1.9)(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))
-      '@nomicfoundation/hardhat-keystore': 3.0.3(hardhat@3.18.1)
-      '@nomicfoundation/hardhat-network-helpers': 3.0.3(hardhat@3.18.1)
-      '@nomicfoundation/hardhat-node-test-runner': 3.0.8(hardhat@3.18.1)
-      '@nomicfoundation/hardhat-verify': 3.0.8(hardhat@3.18.1)
-      '@nomicfoundation/hardhat-viem': 3.0.2(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))
-      '@nomicfoundation/hardhat-viem-assertions': 3.0.5(@nomicfoundation/hardhat-viem@3.0.2(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76)))(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))
+      '@nomicfoundation/hardhat-ignition': 3.1.8(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1)(supports-color@7.2.0))(hardhat@3.18.1)
+      '@nomicfoundation/hardhat-ignition-viem': 3.0.7(@nomicfoundation/hardhat-ignition@3.1.8(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1)(supports-color@7.2.0))(hardhat@3.18.1))(@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1)(supports-color@7.2.0))(@nomicfoundation/hardhat-viem@3.1.0(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76)))(@nomicfoundation/ignition-core@3.1.9)(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))
+      '@nomicfoundation/hardhat-keystore': 3.0.3(hardhat@3.18.1)(supports-color@7.2.0)
+      '@nomicfoundation/hardhat-network-helpers': 3.0.3(hardhat@3.18.1)(supports-color@7.2.0)
+      '@nomicfoundation/hardhat-node-test-runner': 3.0.8(hardhat@3.18.1)(supports-color@7.2.0)
+      '@nomicfoundation/hardhat-verify': 3.0.8(hardhat@3.18.1)(supports-color@7.2.0)
+      '@nomicfoundation/hardhat-viem': 3.1.0(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))
+      '@nomicfoundation/hardhat-viem-assertions': 3.0.5(@nomicfoundation/hardhat-viem@3.1.0(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76)))(hardhat@3.18.1)(supports-color@7.2.0)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))
       '@nomicfoundation/ignition-core': 3.1.9
       hardhat: 3.18.1
       viem: 2.55.19(typescript@6.0.3)(zod@3.25.76)
 
-  '@nomicfoundation/hardhat-utils@3.0.0':
+  '@nomicfoundation/hardhat-utils@3.0.0(supports-color@7.2.0)':
     dependencies:
       '@streamparser/json-node': 0.0.22
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@7.2.0)
       env-paths: 2.2.1
       ethereum-cryptography: 2.2.1
       fast-equals: 5.4.0
@@ -2256,10 +2249,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nomicfoundation/hardhat-utils@3.0.6':
+  '@nomicfoundation/hardhat-utils@3.0.6(supports-color@7.2.0)':
     dependencies:
       '@streamparser/json-node': 0.0.22
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@7.2.0)
       env-paths: 2.2.1
       ethereum-cryptography: 2.2.1
       fast-equals: 5.4.1
@@ -2268,16 +2261,6 @@ snapshots:
       undici: 6.28.0
     transitivePeerDependencies:
       - supports-color
-
-  '@nomicfoundation/hardhat-utils@4.1.6':
-    dependencies:
-      '@streamparser/json-node': 0.0.22
-      env-paths: 2.2.1
-      ethereum-cryptography: 2.2.1
-      fast-equals: 5.4.1
-      json-stream-stringify: 3.1.7
-      rfdc: 1.4.1
-      undici: 6.28.0
 
   '@nomicfoundation/hardhat-utils@4.1.9':
     dependencies:
@@ -2300,45 +2283,54 @@ snapshots:
       rfdc: 1.4.1
       undici: 7.30.0
 
+  '@nomicfoundation/hardhat-utils@5.1.0':
+    dependencies:
+      '@streamparser/json-node': 0.0.26
+      env-paths: 4.0.0
+      ethereum-cryptography: 3.2.0
+      fast-equals: 6.0.2
+      json-stream-stringify: 3.1.7
+      micro-eth-signer: 0.19.0
+      rfdc: 1.4.1
+      undici: 7.30.0
+
   '@nomicfoundation/hardhat-vendored@3.0.4': {}
 
-  '@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1)':
+  '@nomicfoundation/hardhat-verify@3.0.8(hardhat@3.18.1)(supports-color@7.2.0)':
     dependencies:
       '@ethersproject/abi': 5.8.0
       '@nomicfoundation/hardhat-errors': 3.1.1
-      '@nomicfoundation/hardhat-utils': 3.0.6
+      '@nomicfoundation/hardhat-utils': 3.0.6(supports-color@7.2.0)
       '@nomicfoundation/hardhat-zod-utils': 3.0.5(zod@3.25.76)
       cbor2: 1.12.0
       chalk: 5.6.2
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@7.2.0)
       hardhat: 3.18.1
       semver: 7.8.5
       zod: 3.25.76
     transitivePeerDependencies:
       - supports-color
 
-  '@nomicfoundation/hardhat-viem-assertions@3.0.5(@nomicfoundation/hardhat-viem@3.0.2(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76)))(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))':
+  '@nomicfoundation/hardhat-viem-assertions@3.0.5(@nomicfoundation/hardhat-viem@3.1.0(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76)))(hardhat@3.18.1)(supports-color@7.2.0)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))':
     dependencies:
       '@nomicfoundation/hardhat-errors': 3.1.1
-      '@nomicfoundation/hardhat-utils': 3.0.6
-      '@nomicfoundation/hardhat-viem': 3.0.2(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))
+      '@nomicfoundation/hardhat-utils': 3.0.6(supports-color@7.2.0)
+      '@nomicfoundation/hardhat-viem': 3.1.0(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))
       hardhat: 3.18.1
       viem: 2.55.19(typescript@6.0.3)(zod@3.25.76)
     transitivePeerDependencies:
       - supports-color
 
-  '@nomicfoundation/hardhat-viem@3.0.2(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))':
+  '@nomicfoundation/hardhat-viem@3.1.0(hardhat@3.18.1)(viem@2.55.19(typescript@6.0.3)(zod@3.25.76))':
     dependencies:
       '@nomicfoundation/hardhat-errors': 3.1.1
-      '@nomicfoundation/hardhat-utils': 3.0.6
+      '@nomicfoundation/hardhat-utils': 5.1.0
       hardhat: 3.18.1
       viem: 2.55.19(typescript@6.0.3)(zod@3.25.76)
-    transitivePeerDependencies:
-      - supports-color
 
-  '@nomicfoundation/hardhat-zod-utils@3.0.0(zod@3.25.76)':
+  '@nomicfoundation/hardhat-zod-utils@3.0.0(supports-color@7.2.0)(zod@3.25.76)':
     dependencies:
-      '@nomicfoundation/hardhat-utils': 3.0.6
+      '@nomicfoundation/hardhat-utils': 3.0.6(supports-color@7.2.0)
       zod: 3.25.76
     transitivePeerDependencies:
       - supports-color
@@ -2352,8 +2344,8 @@ snapshots:
   '@nomicfoundation/ignition-core@3.1.9':
     dependencies:
       '@ethersproject/address': 5.8.0
-      '@nomicfoundation/hardhat-errors': 3.0.17
-      '@nomicfoundation/hardhat-utils': 4.1.6
+      '@nomicfoundation/hardhat-errors': 3.1.1
+      '@nomicfoundation/hardhat-utils': 4.4.0
       '@nomicfoundation/solidity-analyzer': 0.1.2
       cbor2: 2.3.0
       ethers: 6.16.0
@@ -2445,10 +2437,10 @@ snapshots:
 
   '@sindresorhus/is@5.6.0': {}
 
-  '@solarity/hardhat-markup@2.0.0(hardhat@3.18.1)':
+  '@solarity/hardhat-markup@2.0.0(hardhat@3.18.1)(supports-color@7.2.0)':
     dependencies:
-      '@nomicfoundation/hardhat-utils': 3.0.0
-      '@nomicfoundation/hardhat-zod-utils': 3.0.0(zod@3.25.76)
+      '@nomicfoundation/hardhat-utils': 3.0.0(supports-color@7.2.0)
+      '@nomicfoundation/hardhat-zod-utils': 3.0.0(supports-color@7.2.0)(zod@3.25.76)
       hardhat: 3.18.1
       json2md: 2.0.2
       lodash: 4.17.21
@@ -2463,20 +2455,20 @@ snapshots:
 
   '@solidity-parser/parser@0.20.2': {}
 
-  '@solidstate/hardhat-abi-exporter@3.0.4(@nomicfoundation/hardhat-utils@4.4.0)(hardhat@3.18.1)':
+  '@solidstate/hardhat-abi-exporter@3.0.4(@nomicfoundation/hardhat-utils@4.4.0)(debug@4.4.3(supports-color@7.2.0))(hardhat@3.18.1)(supports-color@7.2.0)':
     dependencies:
       '@ethersproject/abi': 5.8.0
       '@nomicfoundation/hardhat-utils': 4.4.0
-      '@solidstate/hardhat-solidstate-utils': 1.0.3(@nomicfoundation/hardhat-utils@4.4.0)(hardhat@3.18.1)
+      '@solidstate/hardhat-solidstate-utils': 1.0.3(@nomicfoundation/hardhat-utils@4.4.0)(debug@4.4.3(supports-color@7.2.0))(hardhat@3.18.1)(supports-color@7.2.0)
       hardhat: 3.18.1
     transitivePeerDependencies:
       - debug
       - supports-color
 
-  '@solidstate/hardhat-solidstate-utils@1.0.3(@nomicfoundation/hardhat-utils@4.4.0)(hardhat@3.18.1)':
+  '@solidstate/hardhat-solidstate-utils@1.0.3(@nomicfoundation/hardhat-utils@4.4.0)(debug@4.4.3(supports-color@7.2.0))(hardhat@3.18.1)(supports-color@7.2.0)':
     dependencies:
       '@nomicfoundation/hardhat-utils': 4.4.0
-      axios: 1.19.0
+      axios: 1.19.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
       chalk: 5.6.2
       cli-table3: 0.6.5
       env-paths: 4.0.0
@@ -2518,15 +2510,15 @@ snapshots:
     dependencies:
       undici-types: 8.9.0
 
-  '@typescript-eslint/eslint-plugin@8.71.0(@typescript-eslint/parser@8.71.0(eslint@10.9.1)(typescript@6.0.3))(eslint@10.9.1)(typescript@6.0.3)':
+  '@typescript-eslint/eslint-plugin@8.72.0(@typescript-eslint/parser@8.72.0(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
-      '@typescript-eslint/parser': 8.71.0(eslint@10.9.1)(typescript@6.0.3)
-      '@typescript-eslint/scope-manager': 8.71.0
-      '@typescript-eslint/type-utils': 8.71.0(eslint@10.9.1)(typescript@6.0.3)
-      '@typescript-eslint/utils': 8.71.0(eslint@10.9.1)(typescript@6.0.3)
-      '@typescript-eslint/visitor-keys': 8.71.0
-      eslint: 10.9.1
+      '@typescript-eslint/parser': 8.72.0(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+      '@typescript-eslint/scope-manager': 8.72.0
+      '@typescript-eslint/type-utils': 8.72.0(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.72.0(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+      '@typescript-eslint/visitor-keys': 8.72.0
+      eslint: 10.9.1(supports-color@7.2.0)
       ignore: 7.0.6
       natural-compare: 1.4.0
       ts-api-utils: 2.5.0(typescript@6.0.3)
@@ -2534,57 +2526,57 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.71.0(eslint@10.9.1)(typescript@6.0.3)':
+  '@typescript-eslint/parser@8.72.0(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/scope-manager': 8.71.0
-      '@typescript-eslint/types': 8.71.0
-      '@typescript-eslint/typescript-estree': 8.71.0(typescript@6.0.3)
-      '@typescript-eslint/visitor-keys': 8.71.0
-      debug: 4.4.3
-      eslint: 10.9.1
+      '@typescript-eslint/scope-manager': 8.72.0
+      '@typescript-eslint/types': 8.72.0
+      '@typescript-eslint/typescript-estree': 8.72.0(supports-color@7.2.0)(typescript@6.0.3)
+      '@typescript-eslint/visitor-keys': 8.72.0
+      debug: 4.4.3(supports-color@7.2.0)
+      eslint: 10.9.1(supports-color@7.2.0)
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/project-service@8.71.0(typescript@6.0.3)':
+  '@typescript-eslint/project-service@8.72.0(supports-color@7.2.0)(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.71.0(typescript@6.0.3)
-      '@typescript-eslint/types': 8.71.0
-      debug: 4.4.3
+      '@typescript-eslint/tsconfig-utils': 8.72.0(typescript@6.0.3)
+      '@typescript-eslint/types': 8.72.0
+      debug: 4.4.3(supports-color@7.2.0)
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/scope-manager@8.71.0':
+  '@typescript-eslint/scope-manager@8.72.0':
     dependencies:
-      '@typescript-eslint/types': 8.71.0
-      '@typescript-eslint/visitor-keys': 8.71.0
+      '@typescript-eslint/types': 8.72.0
+      '@typescript-eslint/visitor-keys': 8.72.0
 
-  '@typescript-eslint/tsconfig-utils@8.71.0(typescript@6.0.3)':
+  '@typescript-eslint/tsconfig-utils@8.72.0(typescript@6.0.3)':
     dependencies:
       typescript: 6.0.3
 
-  '@typescript-eslint/type-utils@8.71.0(eslint@10.9.1)(typescript@6.0.3)':
+  '@typescript-eslint/type-utils@8.72.0(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/types': 8.71.0
-      '@typescript-eslint/typescript-estree': 8.71.0(typescript@6.0.3)
-      '@typescript-eslint/utils': 8.71.0(eslint@10.9.1)(typescript@6.0.3)
-      debug: 4.4.3
-      eslint: 10.9.1
+      '@typescript-eslint/types': 8.72.0
+      '@typescript-eslint/typescript-estree': 8.72.0(supports-color@7.2.0)(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.72.0(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+      debug: 4.4.3(supports-color@7.2.0)
+      eslint: 10.9.1(supports-color@7.2.0)
       ts-api-utils: 2.5.0(typescript@6.0.3)
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/types@8.71.0': {}
+  '@typescript-eslint/types@8.72.0': {}
 
-  '@typescript-eslint/typescript-estree@8.71.0(typescript@6.0.3)':
+  '@typescript-eslint/typescript-estree@8.72.0(supports-color@7.2.0)(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/project-service': 8.71.0(typescript@6.0.3)
-      '@typescript-eslint/tsconfig-utils': 8.71.0(typescript@6.0.3)
-      '@typescript-eslint/types': 8.71.0
-      '@typescript-eslint/visitor-keys': 8.71.0
-      debug: 4.4.3
+      '@typescript-eslint/project-service': 8.72.0(supports-color@7.2.0)(typescript@6.0.3)
+      '@typescript-eslint/tsconfig-utils': 8.72.0(typescript@6.0.3)
+      '@typescript-eslint/types': 8.72.0
+      '@typescript-eslint/visitor-keys': 8.72.0
+      debug: 4.4.3(supports-color@7.2.0)
       minimatch: 10.2.6
       semver: 7.8.5
       tinyglobby: 0.2.17
@@ -2593,20 +2585,20 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.71.0(eslint@10.9.1)(typescript@6.0.3)':
+  '@typescript-eslint/utils@8.72.0(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.10.1(eslint@10.9.1)
-      '@typescript-eslint/scope-manager': 8.71.0
-      '@typescript-eslint/types': 8.71.0
-      '@typescript-eslint/typescript-estree': 8.71.0(typescript@6.0.3)
-      eslint: 10.9.1
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.9.1(supports-color@7.2.0))
+      '@typescript-eslint/scope-manager': 8.72.0
+      '@typescript-eslint/types': 8.72.0
+      '@typescript-eslint/typescript-estree': 8.72.0(supports-color@7.2.0)(typescript@6.0.3)
+      eslint: 10.9.1(supports-color@7.2.0)
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/visitor-keys@8.71.0':
+  '@typescript-eslint/visitor-keys@8.72.0':
     dependencies:
-      '@typescript-eslint/types': 8.71.0
+      '@typescript-eslint/types': 8.72.0
       eslint-visitor-keys: 5.0.1
 
   abitype@1.2.3(typescript@6.0.3)(zod@3.25.76):
@@ -2629,9 +2621,9 @@ snapshots:
 
   aes-js@4.0.0-beta.5: {}
 
-  agent-base@6.0.2:
+  agent-base@6.0.2(supports-color@7.2.0):
     dependencies:
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -2667,11 +2659,11 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  axios@1.19.0:
+  axios@1.19.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0):
     dependencies:
-      follow-redirects: 1.16.0
+      follow-redirects: 1.16.0(debug@4.4.3(supports-color@7.2.0))
       form-data: 4.0.6
-      https-proxy-agent: 5.0.1
+      https-proxy-agent: 5.0.1(supports-color@7.2.0)
       proxy-from-env: 2.1.0
     transitivePeerDependencies:
       - debug
@@ -2772,9 +2764,11 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  debug@4.4.3:
+  debug@4.4.3(supports-color@7.2.0):
     dependencies:
       ms: 2.1.3
+    optionalDependencies:
+      supports-color: 7.2.0
 
   decompress-response@6.0.0:
     dependencies:
@@ -2878,11 +2872,11 @@ snapshots:
 
   eslint-visitor-keys@5.0.1: {}
 
-  eslint@10.9.1:
+  eslint@10.9.1(supports-color@7.2.0):
     dependencies:
-      '@eslint-community/eslint-utils': 4.10.1(eslint@10.9.1)
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.9.1(supports-color@7.2.0))
       '@eslint-community/regexpp': 4.12.2
-      '@eslint/config-array': 0.23.5
+      '@eslint/config-array': 0.23.5(supports-color@7.2.0)
       '@eslint/config-helpers': 0.7.0
       '@eslint/core': 1.2.1
       '@eslint/plugin-kit': 0.7.2
@@ -2892,7 +2886,7 @@ snapshots:
       '@types/estree': 1.0.9
       ajv: 6.15.0
       cross-spawn: 7.0.6
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@7.2.0)
       escape-string-regexp: 4.0.0
       eslint-scope: 9.1.2
       eslint-visitor-keys: 5.0.1
@@ -2997,7 +2991,9 @@ snapshots:
 
   flatted@3.4.4: {}
 
-  follow-redirects@1.16.0: {}
+  follow-redirects@1.16.0(debug@4.4.3(supports-color@7.2.0)):
+    optionalDependencies:
+      debug: 4.4.3(supports-color@7.2.0)
 
   forge-std@https://codeload.github.com/foundry-rs/forge-std/tar.gz/bf647bd6046f2f7da30d0c2bf435e5c76a780c1b: {}
 
@@ -3118,10 +3114,10 @@ snapshots:
       quick-lru: 5.1.1
       resolve-alpn: 1.2.1
 
-  https-proxy-agent@5.0.1:
+  https-proxy-agent@5.0.1(supports-color@7.2.0):
     dependencies:
-      agent-base: 6.0.2
-      debug: 4.4.3
+      agent-base: 6.0.2(supports-color@7.2.0)
+      debug: 4.4.3(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -3535,13 +3531,13 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
 
-  typescript-eslint@8.71.0(eslint@10.9.1)(typescript@6.0.3):
+  typescript-eslint@8.72.0(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.71.0(@typescript-eslint/parser@8.71.0(eslint@10.9.1)(typescript@6.0.3))(eslint@10.9.1)(typescript@6.0.3)
-      '@typescript-eslint/parser': 8.71.0(eslint@10.9.1)(typescript@6.0.3)
-      '@typescript-eslint/typescript-estree': 8.71.0(typescript@6.0.3)
-      '@typescript-eslint/utils': 8.71.0(eslint@10.9.1)(typescript@6.0.3)
-      eslint: 10.9.1
+      '@typescript-eslint/eslint-plugin': 8.72.0(@typescript-eslint/parser@8.72.0(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+      '@typescript-eslint/parser': 8.72.0(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+      '@typescript-eslint/typescript-estree': 8.72.0(supports-color@7.2.0)(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.72.0(eslint@10.9.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+      eslint: 10.9.1(supports-color@7.2.0)
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
